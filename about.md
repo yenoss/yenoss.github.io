@@ -2,8 +2,12 @@
 layout: page
 title: About
 ---
+~~~
+공부하는 개발 정보를 공유합니다.
 
-<p class="message">
-  hi
-</p>
-about me
+좀 더 여유로운 개발을 할 수 있을 때까지..
+
+그런 날이 올까요?
+
+~~~
+
