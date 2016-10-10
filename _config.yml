@@ -2,25 +2,28 @@
 markdown:         redcarpet
 highlighter:      pygments
 
-# # Permalinks
-# permalink:        pretty
-# relative_permalinks: true
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
 
 # Setup
-title:            yenos
+title:            Hyde
 tagline:          'A Jekyll theme'
-description:      'develop'
-url:              https://yenoss.github.io
+description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+url:              http://yenoss.github.io
 baseurl:          /
 
 author:
-  name:           'yenoss'
+  name:           'Mark Otto'
   url:            https://twitter.com/mdo
 
-paginate:         4
+paginate:         5
 
 # Custom vars
-version:          1.0.0
+version:          2.1.0
 
 github:
-  repo:           https://github.com/yenoss
+  repo:           https://github.com/poole/hyde
+
+
+
