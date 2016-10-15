@@ -8,7 +8,7 @@ highlighter:      pygments
 
 # Setup
 title:            yenos
-tagline:          'A Jekyll theme'
+tagline:          '개발 블로그'
 description:      'develop'
 url:              https://yenoss.github.io
 baseurl:          /
