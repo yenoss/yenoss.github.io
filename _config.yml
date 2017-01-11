@@ -1,8 +1,8 @@
 #------------------------------------------------------------------------------
 # General
 #------------------------------------------------------------------------------
-name: "Yenos"
-description: "ios/swift,Node.js"
+name: "yenos's blog"
+description: "ios/swift,node.js 그리고 잡다하게 관심이 많아요."
 language: "en"
 
 url: http://localhost:4000
