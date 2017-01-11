@@ -1,26 +1,51 @@
-# Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+#------------------------------------------------------------------------------
+# General
+#------------------------------------------------------------------------------
+name: "Yenos"
+description: "ios/swift,Node.js"
+language: "en"
 
-# # Permalinks
-# permalink:        pretty
-# relative_permalinks: true
+url: http://localhost:4000
+baseurl: ''
 
-# Setup
-title:            yenos
-tagline:          '개발 블로그'
-description:      'develop'
-url:              https://yenoss.github.io
-baseurl:          /
+#------------------------------------------------------------------------------
+# Markdown processor and code highlighting
+#------------------------------------------------------------------------------
+markdown: kramdown
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+highlighter: rouge
 
-author:
-  name:           'yenoss'
-  url:            https://twitter.com/mdo
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
-paginate:         4
+#------------------------------------------------------------------------------
+# Pagination and friendly URLs
+#------------------------------------------------------------------------------
+paginate: 2
+paginate_path: /page-:num
+permalink: /:title
 
-# Custom vars
-version:          1.0.0
+#------------------------------------------------------------------------------
+# Social sharing, comments and RSS.
+#------------------------------------------------------------------------------
+disqus-id: yenoss
 
-github:
-  repo:           https://github.com/yenoss
+enable-share: true
+# twitter: yourusername
+github: https://github.com/yenoss
+# google: +yourusername
+
+rss-feed-limit: 10
+rss-show-full: false
+
+#------------------------------------------------------------------------------
+# Configuration, plugins, gems, etc..
+#------------------------------------------------------------------------------
+source: .
+destination: ./_site
+gems: ['jekyll-paginate']
+
+sass:
+    style: :compressed
+    sass_dir: assets/css/
