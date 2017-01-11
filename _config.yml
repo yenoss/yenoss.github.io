@@ -1,12 +1,12 @@
 #------------------------------------------------------------------------------
 # General
 #------------------------------------------------------------------------------
-name: "yenos's blog"
+name: "yenos의 개발 블로그"
 description: "ios/swift,node.js 그리고 잡다하게 관심이 많아요."
 language: "en"
 
-url: http://localhost:4000
-baseurl: ''
+url: https://yenoss.github.io
+baseurl: '/'
 
 #------------------------------------------------------------------------------
 # Markdown processor and code highlighting
