@@ -29,7 +29,7 @@ permalink: /:title
 #------------------------------------------------------------------------------
 # Social sharing, comments and RSS.
 #------------------------------------------------------------------------------
-disqus-id: yenoss
+disqus-id: yenos
 
 enable-share: true
 # twitter: yourusername
