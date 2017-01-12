@@ -1,12 +1,12 @@
 #------------------------------------------------------------------------------
 # General
 #------------------------------------------------------------------------------
-name: "yenos의 개발 블로그"
-description: "ios/swift,node.js 그리고 잡다하게 관심이 많아요."
+name: "yenos blog"
+description: "swift,node.js"
 language: "en"
 
-url: ""
-baseurl: ""
+url: "http://localhost:4000"
+baseurl: "/"
 
 #------------------------------------------------------------------------------
 # Markdown processor and code highlighting
@@ -22,7 +22,7 @@ kramdown:
 #------------------------------------------------------------------------------
 # Pagination and friendly URLs
 #------------------------------------------------------------------------------
-paginate: 2
+paginate: 5
 paginate_path: /page-:num
 permalink: /:title
 
