@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CHAPTER 11 인스턴스"
+title:  "CHAPTER 13 swift closure"
 date:   2017-4-12 15:37:00
 categories: Swift
 ---
