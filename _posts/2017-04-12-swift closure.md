@@ -129,3 +129,45 @@ func appendClosure(closure: @escaping VoidVoidClosure){
     closures.append(closure)
 }
 ~~~
+
+//자동 클로저
+//자동 클로저는 전달인자를 갖지 않는다.
+//자동클로저는 호출되기전까지 내부코드는 동작하지 않는다.
+
+~~~
+var customersInLine: [String] = ["ya","san","Sung","Hami"]
+print(customersInLine.removeFirst())
+print(customersInLine.count)
+
+// 클로저를 만들어두면 실행하지 않고 가지고만 있는다.
+// 하나의 명령 문장.
+let customerProvider: () -> String = {
+    return customersInLine.removeFirst()
+}
+print(customersInLine.count)
+
+print("Now serving \(customerProvider())")
+print(customersInLine.count)
+//customerProvider 는 매개변수는 없고 리턴은 String은 함수이다.
+func serveCustomer(_ customerProvider: () -> String) {
+    print("now Serving \(customerProvider())")
+}
+//함수를 매개변수로 전달하였다.
+serveCustomer({customersInLine.removeFirst()})
+
+~~~
+
+//위의 예로 자동 클로저를 작성해본다.
+
+//autoClosure 옵션을 주게되면 해당 매개변수는 클로저 대신 실행결과 string의 문자열을 전달인자로 받게된다.
+//해당 string을 반환갑이 string인 클로저로 변환시켜주는 역할을한다
+//해서호출시 {}등의 문법적 표현이 줄어든다.
+
+~~~
+func serveCustomer2(_ customerProvider: @autoclosure () -> String){
+        print("now serving \(customerProvider())")
+}
+
+serveCustomer2(customersInLine.removeFirst())
+~~~
+
