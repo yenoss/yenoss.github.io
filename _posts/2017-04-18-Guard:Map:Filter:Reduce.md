@@ -7,7 +7,7 @@ categories: Swift
 
 
 
-#Swift ABC
+#적용할 곳이 상상이가는 파트라 한숨이 조금 적었다. 
 
 <br><br>
 #GUARD
