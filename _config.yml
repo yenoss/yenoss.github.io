@@ -1,14 +1,14 @@
-name: Herring Cove
-author: Herring Cove
+name: Yenos blog
+author: yenos choi
 baseurl: 
-description: theme for jekyll
+description: hello world!
 github: https://yenoss.github.io
-twitter: http://www.twitter.com/
-facebook: http://www.facebook.com
-linkedin: http://www.linkedin.com
-email: rnpatel[at]me.com
+# twitter: http://www.twitter.com/
+facebook: https://www.facebook.com
+linkedin: https://www.linkedin.com/feed/
+email: cpg0504@gmail.com
 location: 42°2'16"N   70°12'47"W
-disqus: diqus-username
+disqus: yenos
 
 ##Make sure to edit the above fields, especially for disqus.
 
