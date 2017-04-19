@@ -1,24 +1,17 @@
 ---
 layout: default
 ---
-
-<div id='top' class="main-content">
-   
-    <article class="module color-3">
-       
-        <h1>{{ page.title }}{{ .shortUrl }}</h1>
-        <div class='separator'></div>
-        
-        {{ content }}
-        
-        <p class="top"><small><a href="#top">[top]</a></small></p>
-        
-    </article>
-    
-    {% if site.enable-share %} {% include share.html %} {% endif %}
-    {% if site.disqus-id %} {% include comments.html %} {% endif %}
-
+<div id="article">
+  <div class="article-title">{{ page.title }}</div>
+  <p class="meta">
+    <small>
+      &nbsp;<i class="fa fa-calendar-o"></i> {{ page.date | date_to_string}}
+    </small>
+  </p> <hr/>
+  <div class="post">
+    {{ content }}
+  </div>
 </div>
-
-
-
+{% include share.html %}
+{% include pager.html %}
+{% include comment.html %}

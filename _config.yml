@@ -1,51 +1,31 @@
-#------------------------------------------------------------------------------
-# General
-#------------------------------------------------------------------------------
-name: "yenos blog"
-description: "swift,node.js"
-language: "en"
+name: Herring Cove
+author: Herring Cove
+baseurl: /herring-cove
+description: theme for jekyll
+github: http://www.github.com/arnp
+twitter: http://www.twitter.com/
+facebook: http://www.facebook.com
+linkedin: http://www.linkedin.com
+email: rnpatel[at]me.com
+location: 42°2'16"N   70°12'47"W
+disqus: diqus-username
 
-url: "https://yenoss.github.io"
-baseurl: "/"
+##Make sure to edit the above fields, especially for disqus.
 
-#------------------------------------------------------------------------------
-# Markdown processor and code highlighting
-#------------------------------------------------------------------------------
-markdown: kramdown
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-highlighter: rouge
 
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions: ["tables"]
 
-#------------------------------------------------------------------------------
-# Pagination and friendly URLs
-#------------------------------------------------------------------------------
-paginate: 5
-paginate_path: /page-:num
-permalink: /:title
-
-#------------------------------------------------------------------------------
-# Social sharing, comments and RSS.
-#------------------------------------------------------------------------------
-disqus-id: yenos
-
-enable-share: true
-# twitter: yourusername
-github: yenoss
-# google: +yourusername
-
-rss-feed-limit: 10
-rss-show-full: false
-
-#------------------------------------------------------------------------------
-# Configuration, plugins, gems, etc..
-#------------------------------------------------------------------------------
-source: .
-destination: ./_site
-gems: ['jekyll-paginate']
-
-sass:
-    style: :compressed
-    sass_dir: assets/css/
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
