@@ -1,12 +1,12 @@
-name: yenos Choi
-author: yenos Choi
-baseurl: /
-description: swift,python 
+name: Herring Cove
+author: Herring Cove
+baseurl: /herring-cove
+description: theme for jekyll
 github: https://yenoss.github.io
 twitter: http://www.twitter.com/
 facebook: http://www.facebook.com
 linkedin: http://www.linkedin.com
-email: cpg0504@gmail.com
+email: rnpatel[at]me.com
 location: 42°2'16"N   70°12'47"W
 disqus: diqus-username
 
