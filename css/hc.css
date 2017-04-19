@@ -12,7 +12,7 @@ body
 
 h1,h2,h3,h4,h5,h6
 {
-  font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+  font-family:"Open Sans", sans-serif;
   color:#d90006
 }
 
@@ -39,7 +39,7 @@ h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover
 
 p
 {
-  font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+  font-family:"Open Sans", sans-serif;
   font-weight:200
 }
 
@@ -117,7 +117,7 @@ p
 {
   line-height:30px;
   text-indent:40px;
-  font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
+  font-family:"Open Sans", helvetica, "Open Sans", sans-serif;
   font-weight:200;
   color:#9c9c9c;
   text-shadow:1px 1px #fff
@@ -217,7 +217,7 @@ blockquote
 
 ul,ol
 {
-  font-weight:lighter
+  font-weight:lighter,  font-family:"Open Sans", sans-serif;
 }
 
 pre
@@ -752,3 +752,4 @@ time
 }
 
 }
+
