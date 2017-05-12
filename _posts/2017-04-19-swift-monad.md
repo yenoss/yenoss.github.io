@@ -153,7 +153,7 @@ print(flatMapArr)
 
 <br>
 
-#### ex4
+### ex4
 
 * map 과 flatmap을 명확히 다시알아보자.
 * 그리고 flatmap chainging
@@ -179,7 +179,7 @@ print(result)
 
 <br>
 
-#### ex5
+##### ex5
 
 * flatmap chaning 중 빈 컨택스트를 만났을 경우.
 * 중간에 nil을 만나게되면 모든 하위 메서드는 무시된다.
