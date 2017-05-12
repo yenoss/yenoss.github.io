@@ -24,7 +24,7 @@ categories: swift
 
 <br>
 
-#### ex1
+### ex1
 
 
 * addThree는 순수값 2를 받으면(컨텍스트에 담기지 않은) 함수를 정상 작동시킨다.
@@ -52,7 +52,7 @@ addThree(Optional(2))
 
 <br>
 
-#### ex1
+### ex1
 
 * 옵셔널을 연산할 수 있도록 한다.
 
@@ -62,7 +62,7 @@ Optional(2).map(addThree)
 
 <br>
 
-#### ex2
+### ex2
  
  
  ~~~
@@ -96,7 +96,7 @@ print("\(value.map{ $0 + 3})")
 
 <br>
 
-#### ex1
+### ex1
 
 * 복잡하다 코드를 참고하자.
 
@@ -117,7 +117,7 @@ Optional(3).flatMap(doubledEven)
 
 <br>
 
-#### ex2
+### ex2
 
 * 빈객체가 들어가면 어떻게 되지?
 
@@ -131,7 +131,7 @@ Optional.none.flatMap(doubledEven)
 
 <br>
 
-#### ex3
+### ex3
 
 * flatmap과 map의 차이는 내부의 값을 알아서 더 추출한다는 점
 * 즉 optional을 벗겨서 준다. 
@@ -179,7 +179,7 @@ print(result)
 
 <br>
 
-##### ex5
+### ex5
 
 * flatmap chaning 중 빈 컨택스트를 만났을 경우.
 * 중간에 nil을 만나게되면 모든 하위 메서드는 무시된다.
