@@ -5,7 +5,7 @@ categories: swift
 ---
 
 <br><br>
-#TypeCasting
+# TypeCasting
 
 * swift는 암시적 타입캐스팅을 지원하지 않습니다. 
 * 꼭 명시를 해야한다는 이야기입니다. 
@@ -13,7 +13,7 @@ categories: swift
 
 
 <br>
-##ex1
+## ex1
 
 * 아래 예제를 통해 타입확인을 해봅니다.
  
@@ -62,7 +62,7 @@ class Americano: Coffee {
 ~~~
 
 <br>
-###ex1
+### ex1
 
 * is 를 이용하여 해당 타입이 맞는지 확인 합니다. 
 
@@ -79,14 +79,14 @@ print(coffee is Americano)
 ~~~
 
 <br><br>
-##Meta type
+## Meta type
 
 * 타입의 타입을 의미합니다
 * 구조체 타입, 열거형 타입 프로토콜 타입
 * .Type으로 메타타입을 나타냅니다.
 
 <br>
-###ex1
+### ex1
 
 * 타입을 타입으로 둡니다.
 
@@ -135,11 +135,11 @@ type(of:coffee) == Cofee.self
 
 
 <br><br>
-##downCasting
+## downCasting
 
 
 <br>
-###ex1
+### ex1
 
 ~~~
 let actingConstant: Coffee = Latte(flavo: "vanilla", shot: 2)
@@ -164,11 +164,11 @@ print("this si Americano")
 
 
 <br><br>
-##Any,AnyObject Type casting
+## Any,AnyObject Type casting
 * 특정 타입을 지정하지않고 여러타입의 값을 할당할 수 있는 Any,AnyObject라는 특별한 타입이 있습니다.
 
 <br>
-###ex1
+### ex1
 
 ~~~
 
@@ -192,7 +192,7 @@ checkType(of: coffee)
 
 <br>
 <br>
-##마치며
+## 마치며
 
 * 스위프트는 type safe한 언어입니다. 매우 중요한 파트라 생각합니다.
 * 스위프트의 직관적인? 표현에 많이 익숙해진거같습니다. as 라는 표현이 굉장히 매력적이네요

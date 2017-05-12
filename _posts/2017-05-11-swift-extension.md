@@ -5,7 +5,7 @@ categories: swift
 ---
 
 <br><br>
-#Extension
+# Extension
 
 
 * 프로토콜 타입에 새로운 기능을 추가할 수있는 기능입니다.
@@ -15,7 +15,7 @@ categories: swift
 
 
 <br>
-###ex1
+### ex1
 * 아래와 같은 형태로 사용합니다.
  
 ~~~
@@ -24,12 +24,12 @@ extension {이름}: {프로토콜1} {프로토콜2} {
 ~~~
 
 <br>
-##computedProperty
+## computedProperty
 
 * 연산프로퍼티를 추가할 수 있습니다.	
 
 <br>
-###ex1
+### ex1
 
 ~~~
 
@@ -48,12 +48,12 @@ print(num.isEven)
 ~~~
 
 <br><br>
-##Method
+## Method
 
 * 메서드를 추가 할 수 있습니다.
 
 <br>
-###ex1
+### ex1
 
 * mutating을 통해 내부의 값을 변경할 수 있다고 알려줍니다.
 
