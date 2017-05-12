@@ -5,8 +5,8 @@ categories: swift
 ---
 
 <br><br>
-MONAD
-====================
+
+#MONAD
 
 
 * 함수형 프로그래밍의 좋은 예.
@@ -16,16 +16,16 @@ MONAD
 
 
 <br>
-Context
-================
 
+#Context
 * 컨텐츠를 담고 있는 무언가이다.
 * optional의 값을 가지않는다면 열거형에 .none, 가진다면 .some(value)로 값을 취한다.
 
 
 <br>
-ex1
-------------
+
+###ex1
+
 
 * addThree는 순수값 2를 받으면(컨텍스트에 담기지 않은) 함수를 정상 작동시킨다.
  
@@ -44,14 +44,15 @@ addThree(Optional(2))
 
 
 <br><br>
-함수 객체
-================
+
+#함수 객체
 
 * map은 값을 변형시키는 고차함수이다. optional은 컨테이너와 값을 가지므로 맵 함수를 사용할 수 있다.
 
 
 <br>
-####ex1
+
+###ex1
 
 * 옵셔널을 연산할 수 있도록 한다.
 
@@ -60,7 +61,8 @@ Optional(2).map(addThree)
 ~~~
 
 <br>
-####ex2
+
+###ex2
  
  
  ~~~
@@ -83,8 +85,8 @@ print("\(value.map{ $0 + 3})")
 
  
 <br><br>
-Real Monad
-============
+
+#Real Monad
 
 * monad는 함수 객체의 일종.
 * 함수객체는 포장된 값에 함수 적용이 가능.
@@ -93,7 +95,8 @@ Real Monad
 * monad는 값이 있을수도 있고 없을 수도 있는 컨텍스트를 가지는 함수 객체 타입.
 
 <br>
-####ex1
+
+###ex1
 
 * 복잡하다 코드를 참고하자.
 
@@ -113,7 +116,8 @@ Optional(3).flatMap(doubledEven)
 ~~~
 
 <br>
-####ex2
+
+###ex2
 
 * 빈객체가 들어가면 어떻게 되지?
 
@@ -126,7 +130,8 @@ Optional.none.flatMap(doubledEven)
 ~~~
 
 <br>
-####ex3
+
+###ex3
 
 * flatmap과 map의 차이는 내부의 값을 알아서 더 추출한다는 점
 * 즉 optional을 벗겨서 준다. 
@@ -147,7 +152,8 @@ print(flatMapArr)
 ~~~
 
 <br>
-####ex4
+
+###ex4
 
 * map 과 flatmap을 명확히 다시알아보자.
 * 그리고 flatmap chainging
@@ -172,7 +178,8 @@ print(result)
 ~~~
 
 <br>
-####ex5
+
+###ex5
 
 * flatmap chaning 중 빈 컨택스트를 만났을 경우.
 * 중간에 nil을 만나게되면 모든 하위 메서드는 무시된다.
@@ -189,8 +196,8 @@ print(result)
 
 <br>
 <br>
-마치며
-===========
+
+#마치며
 
 * 스윕트의 절대 장점인 safe한 특징을 보다 쉽게 사용하기위해 만들어놓은 수단인것 같다
 * 적당한 부분에서 사용해야할 것같고, optional chainging을 벗길경우 사용하면 유용할 듯 싶다.
