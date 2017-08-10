@@ -1,11 +1,11 @@
 name: Yenos blog
 author: yenos choi
 baseurl: 
-description: hello world!
+description: swift & python
 github: https://yenoss.github.io
-twitter: http://www.twitter.com/
-facebook: https://www.facebook.com
-linkedin: https://www.linkedin.com/feed/
+twitter: 
+facebook: https://www.facebook.com/pyeongkang.choi
+linkedin: https://www.linkedin.com/in/pyeongkang-choi-b5954958/
 email: cpg0504@gmail.com
 location: 42°2'16"N   70°12'47"W
 disqus: yenos
