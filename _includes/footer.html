@@ -1,9 +1,9 @@
-<div class="container">
-  <footer>
-    <p class="text-muted credit">
-      &copy; {{ site.time | date: '%Y' }} {{ site.name }} &middot;
-      <a href="https://github.com/arnp/herring-cove"> Herring Cove for Jekyll </a>
-      {{ site.time }}
-    </p>
-  </footer>
-</div>
+<footer>
+  <hr/>
+  {% if site.copyright.size > 0 %}
+    {{ site.copyright | markdownify }}
+  {% endif %}
+  <p>
+    <code>Powered by <a href="https://qwtel.com/hydejack/">Hydejack</a> v<span id="_version">6.6.1</span></code>
+  </p>
+</footer>
