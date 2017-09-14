@@ -3,29 +3,28 @@ layout: post
 title: 'ubuntu SuperVisor를 설치해보자.'
 tags: [ubuntu,supervisor]
 ---
+process monitoring,supervisor,forever
 
-##SuperVisor를 설치해보자.
-
-###1. 왜.
+### 1. 왜.
 * 서비스를 운영하다보면 나의 서비스(프로세스)가 잘 돌고있는지 모니터링을 해야하고, 해당 프로세스가 죽었을 경우 다시 살리는 로직등을 오토매틱하게 구현해 두어야한다. 
 손이 가는 작업이지만 꼭 필요한 중요한 작업이다.
 
 * nodejs에서 사용하는 forever과 비슷한 역할을 한다.
 
 <br>
-###2. 그래서 무엇인가.
+### 2. 그래서 무엇인가.
 * superviosr는 서비스를 모니터링 하며, 손쉽게 서비스를 온오프 한다. 기본적으로 서버가 죽을경우 재실행시켜 장애를 최소화 한다.
 
 <br>
-###3. 써보자.
+### 3. 써보자.
 
-#####설치
+##### 설치
 
 ```
 apt-get install supervisor
 ```
 
-#####설정
+##### 설정
 * supervisor 세팅을해보자.
 
 * /etc/supervisor/conf.d 안에 {service_name} 으로 파일을 만들고 아래와 같이 서비스에 대한 세팅을 한다.
@@ -47,7 +46,7 @@ stopasgroup=true
 ```
 
 
-####명령어
+#### 명령어
 * supervisord 실행
 
 sudo supervisord
@@ -74,7 +73,7 @@ sudo supervisorctl status
 
 * 자세한건? [supervisor docs](http://supervisord.org/running.html)
 
-#####웹으로보자
+##### 웹으로보자
 
 * 명령어를 통해 관리할 수있지만 웹 또한 제공해준다. 관리 웹을 띄어보자
 
@@ -90,7 +89,7 @@ password={너의 password}
 
 * 자, 이제 해당포트로 들어가 id/pw를 검색하면 아주 깔끔한 페이지가 나올것이다.
 
-###4.마치며
+### 4.마치며
 
 * 사실 서비스가 어떠한 애러로 인해 죽는 일은 발생하면 안 된다.
 * 하지만 대비 & 모니터링이라는 측면에서 superviosr는 서비스를 띄울때 필수적인 도구라고 생각한다. 
