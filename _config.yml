@@ -13,7 +13,7 @@ url:                 https://yenoss.github.io
 baseurl:             /
 
 # A very short description of your page
-tagline:             A pretentious two-column Jekyll theme.
+tagline:             개발 그리고 개발.
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
