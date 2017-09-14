@@ -1,9 +1,8 @@
 ---
 layout: post
-title: 'Ubuntu NOPASSWWD 옵션이 안 먹힐 때'
+title: 'ubuntu NOPASSWWD 옵션이 안 먹힐 때'
 tags: [ubuntu]
 ---
-
 ubuntu no password not working. nopassword 안먹힘.
 
 ### 1. 무엇인가.

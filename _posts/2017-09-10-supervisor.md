@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'ubuntu SuperVisor를 설치해보자.'
-tags: [ubuntu,supervisor]
+title: 'ubuntu Supervisor를 설치해보자.'
+tags: [ubuntu,python]
 ---
 process monitoring,supervisor,forever
 

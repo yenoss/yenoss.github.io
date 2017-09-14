@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[Err] python mysql_config not found'
+title: '[err] python mysql_config not found'
 tags: [ubuntu,err,python]
 ---
 mysql_config not found
