@@ -8,7 +8,7 @@ qwtel:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    무언가를 안다는 것은 누군가에게 꺼리낌없이 이야기할 수 있다는 것.    
+    무언가를 안다는 것은 누군가에게 거리낌없이 이야기할 수 있다는 것. 그렇기에 알아가는 중.    
 
   # This photo will be used in the about section
   picture:
