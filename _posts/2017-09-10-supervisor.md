@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 'ubuntu Supervisor를 설치해보자.'
+title: '[ubuntu] Supervisor를 설치해보자.'
 tags: [ubuntu,python]
 ---
 process monitoring,supervisor,forever
 
+<br>
 ### 1. 왜.
 * 서비스를 운영하다보면 나의 서비스(프로세스)가 잘 돌고있는지 모니터링을 해야하고, 해당 프로세스가 죽었을 경우 다시 살리는 로직등을 오토매틱하게 구현해 두어야한다. 
 손이 가는 작업이지만 꼭 필요한 중요한 작업이다.
@@ -89,6 +90,7 @@ password={너의 password}
 
 * 자, 이제 해당포트로 들어가 id/pw를 검색하면 아주 깔끔한 페이지가 나올것이다.
 
+<br><br>
 ### 4.마치며
 
 * 사실 서비스가 어떠한 애러로 인해 죽는 일은 발생하면 안 된다.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'django logging 처리'
+title: '[django] logging 처리'
 tags: [django,logging]
 ---
 django,logger,logging

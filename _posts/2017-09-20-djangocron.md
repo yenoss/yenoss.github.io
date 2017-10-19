@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'django command와 crontab을 함께 써보자.'
+title: '[django] command와 crontab을 함께 써보자.'
 tags: [django command, crontab]
 ---
 django,command,crontab

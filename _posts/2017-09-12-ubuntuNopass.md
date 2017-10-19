@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 'ubuntu NOPASSWWD 옵션이 안 먹힐 때'
+title: '[ubuntu] NOPASSWD 옵션이 안 먹힐 때'
 tags: [ubuntu]
 ---
 ubuntu no password not working. nopassword 안먹힘.
 
+<br>
 ### 1. 무엇인가.
 * 특정 계정에게 sudo 명령을 칠때 password를 주지 않고 싶었다. 배포관련 권한을 특정 하기 위해서이다.
 
@@ -39,10 +40,11 @@ group1 ALL=(ALL:ALL) ALL
 sudo visudo에 위와 같이 세팅되어있고, member1이 group1에 포함되어있다면, 
 최종 라인인 group1에 권한이 member1에게 속하게 된다. 
 
-
+<br><br>
 ### 4. 마치며.
-* 정식문서를 잘 `꼼곰히` 읽자. 
+* 정식문서를 잘 `꼼꼼히` 읽자. 
 
+<br>
 ### REF.
 1. [sudoer man page](https://www.sudo.ws/man/1.8.15/sudoers.man.html)
 

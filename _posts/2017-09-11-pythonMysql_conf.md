@@ -5,6 +5,7 @@ tags: [ubuntu,err,python]
 ---
 mysql_config not found
 
+<br>
 ### 1. 무엇인가.
 * python에서 mysql을 사용하기위한 client.
 
@@ -38,14 +39,14 @@ sudo yum install python3-devel # Red Hat / CentOS
 brew install mysql-connector-c # macOS (Homebrew)
 ```
 
-
+<br><br>
 ### 4.마치며.
 * 아직도 영어로 되어있는 것을 보면(깃,공식 문서..) 자세히 이해하려 하지 않고 코드만 보려고 하는 듯하다. 한글 문서 읽듯 `꼼꼼히` 읽자.
 * README가 괜히 있는게 아니다. 
 * 뭐든 정해진 가이드만 따르면 잘 되는게 대부분이다.
 
 
-
+<br>
 ### REF.
 1. [pymysql github](https://github.com/PyMySQL/mysqlclient-python)
 
