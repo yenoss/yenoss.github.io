@@ -1,90 +1,142 @@
-~~~
- __  __                __                                     __
-/\ \/\ \              /\ \             __                    /\ \
-\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
- \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
-  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
-   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
-    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
-                /\___/                \ \____/
-                \/__/                  \/___/
-~~~
+# [Start Bootstrap - Clean Blog](https://startbootstrap.com/template-overviews/clean-blog/) - Official Jekyll Version
 
-# Hydejack
-Hydejack is a cutting-edge Jekyll theme that combines the best of static sites and modern web apps.
-It features a suite of JavaScript that makes the page feel like an app, without sacrificing backwards-compatibility,
-page-load speed or SEO.
+[Clean Blog](http://startbootstrap.com/template-overviews/clean-blog/) is a stylish, responsive blog theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This theme features a blog homepage, about page, contact page, and an example post page along with a working contact form powered by [Formspree](https://formspree.io/).
 
-> Your presence on the web — A [blog], a [portfolio] and a [resume].
+This repository holds the official Jekyll version of the Clean Blog!
 
-It aims to be the complete package for professionals on the web.
-It features a blog suitable for both prose and technical documentation,
-a showcase for projects and a resume that fits with the rest of the design.
+## Preview
 
-## [Demo](https://qwtel.com/hydejack/)
-It's best to just [see it in action](https://qwtel.com/hydejack/).
+[![Clean Blog (Jekyll) Preview](https://startbootstrap.com/assets/img/templates/clean-blog.jpg)](http://blackrockdigital.github.io/startbootstrap-clean-blog-jekyll/)
 
-## Features
-Both the PRO *and* free version includes all of the features listed below:
+**[View Live Preview](http://blackrockdigital.github.io/startbootstrap-clean-blog-jekyll/)**
 
-* Full in-app page loading — no Flash of White, no Flash of Unstyled Content[^1]
-* Advanced animations, inspired by Material Design
-* A customizable sidebar that turns into a touch-enabled app drawer on mobile
-* Near-perfect [Google PageSpeed Score][gpss][^2]
-* Even higher *perceived speed* thanks to pre-fetching and latency-hiding
-* Support for categories and tags — even when hosting on GitHub Pages
-* Built-in collection of social media icons
-* Author section below each article and multiple authors
-* Simple and semantic HTML — can be viewed even with text-based browsers
-* Progressive enhancement — sacrifice features, not content
-* Google Analytics and Google Fonts support
-* Blog layout with pagination
-* Syntax highlighting
-* Math formulas via LaTeX
-* Disqus comments
-* RSS feed
-* Print layout
+## Installation & Setup
 
-## [Documentation][docs]
-Hydejack is documented extensively.
-You can read it [on this site][docs], in the [repository's wiki][wiki], or [download the PDF][download].
+### Using RubyGems:
 
-## Download
-There are two versions of Hydejack: The Free Version includes basic blogging functionality,
-as did previous versions of the theme.
-The new PRO Version includes additional features for professionals:
-A [portfolio], a [resume] layout and a [welcome] page to feature your favorite projects and posts.
+When installing the theme using RubyGems, demo images, posts, and pages are not included. Follow the instructions below for complete setup.
 
-This table details what is and isn't included in each respective version.
+1. (Optional) Create a new Jekyll site: `jekyll new my-site`
+2. Replace the current theme in your `Gemfile` with `gem "jekyll-theme-clean-blog"`.
+3. Install the theme: `bundle install`
+4. Replace the current theme in your `_config.yml` file with `theme: jekyll-theme-awesome`.
+5. Build your site: `bundle exec jekyll serve`
 
-| Version                          | Free               | PRO                |
-|:---------------------------------|:------------------:|:------------------:|
-| Blog                             | &#x2714;           | &#x2714;           |
-| Features (see below)             | &#x2714;           | &#x2714;           |
-| [Portfolio] Layout               |                    | &#x2714;           |
-| [Resume] Layout                  |                    | &#x2714;           |
-| [Welcome] Layout                 |                    | &#x2714;           |
-| License                          | [MIT][license]     | [PRO]              |
-| Price                            | Free               | $34                |
-| | [**Download on GitHub**][download]<br/> – or – <br/>[**Use the RubyGem**][gem] | [**Buy Now – $34**][buy] [^3] |
+Assuming there are no errors and the site is building properly, follow these steps next:
 
+1. Create the following pages if they do not exist already (or change the extension of exsiting markdown files from `.md` to `.html`):
+   - `index.html` - set to `layout: home`
+   - `about.html` - set to `layout: page`
+   - `contact.html` - set to `layout: page`
+   - `posts/index.html` - set to `layout: page` (you will also need to create a `posts` directory)
+2. Configure the `index.html` front matter. Example:
+```
+---
+layout: home
+background: '/PATH_TO_IMAGE'
+---
+```
+3. Configure the `about.html`, `contact.html`, and `posts/index.html` front matter. Example:
+```
+---
+layout: page
+title: Page Title
+description: This is the page description.
+background: '/PATH_TO_IMAGE'
+---
+```
+4. For each post in the `_posts` directory, update the front matter. Example:
+```
+---
+layout: post
+title: "Post Title"
+subtitle: "This is the post subtitle."
+date: YYYY-MM-DD HH:MM:SS
+background: '/PATH_TO_IMAGE'
+---
+```
 
-[^1]: Applies after the initial page load.  
-[^2]: Actual page load speed depends on your hosting provider as well as discipline regarding resolution of images and
-usage of 3rd party plugins.  
-[^3]: Transactions secured by [Stripe](https://stripe.com). Downloads handled by [Simple Goods](https://simplegoods.co/).  
+For reference, look at the [demo repository](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll) to see how the files are set up.
 
-[blog]: https://qwtel.com/hydejack/blog/
-[portfolio]: https://qwtel.com/hydejack/projects/
-[resume]: https://qwtel.com/hydejack/resume/
-[welcome]: https://qwtel.com/hydejack/
+5. Add the form to the `contact.html` page. Add the following code to your `contact.html` page:
+```
+<form name="sentMessage" id="contactForm" novalidate>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>Name</label>
+      <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>Email Address</label>
+      <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group col-xs-12 floating-label-form-group controls">
+      <label>Phone Number</label>
+      <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <label>Message</label>
+      <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <br>
+  <div id="success"></div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+  </div>
+</form>
+```
 
-[license]: LICENSE.md
-[pro]: licenses/PRO-license.md
-[docs]: docs/6.6.1/index.md
+Make sure you have the `email` setting in your `_config.yml` file set to a working email address! Once this is set, fill out the form and then check your email, verify the email address using the link sent to you by Formspree, and then the form will be working!
 
-[download]: https://github.com/qwtel/hydejack/releases
-[gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://app.simplegoods.co/i/AQTTVBOE
-[wiki]: https://github.com/qwtel/hydejack/wiki
-[gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fqwtel.com%2Fhydejack%2F
+6. Build your site: `bundle exec jekyll serve`
+
+### Using Core Files
+
+When using the core files, the demo images, posts, and pages are all included with the download. After following the instructions below, you can then go and change the content of the pages and posts.
+
+1. [Download](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/archive/master.zip) or Clone the repository.
+2. Update the following configuration settings in your `_config.yml` file:
+   - `baserul`
+   - `url`
+   - `title`
+   - `email` (after setting this setting to a working email address, fill out the form on the contact page and send it - then check your email and verify the address and the form will send you messages when used)
+   - `description`
+   - `author`
+   - `twitter_username` (Optional)
+   - `facebook_username` (Optional)
+   - `github_username` (Optional)
+3. Build your site: `bundle exec jekyll serve`
+
+## Bugs and Issues
+
+Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/issues) here on GitHub!
+
+## About
+
+Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+
+* https://startbootstrap.com
+* https://twitter.com/SBootstrap
+
+Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+
+* http://davidmiller.io
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
+
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+
+## Copyright and License
+
+Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/blob/gh-pages/LICENSE) license.

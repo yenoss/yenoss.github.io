@@ -2,6 +2,7 @@
 layout: post
 title: '[swift] function'
 tags: [swift,funcion]
+background: '/img/posts/bg_swift.jpg'
 ---
 swift,functon
 
@@ -19,7 +20,8 @@ swift,functon
 >In-Out Paramters, 기본 매개변수는 상수이고, 해당값을 임의로 조조작하려면 컴파일 오류가발생합니다. 매개변수값을 수정하고, 계속 유지하려면 in-out을 지정해줘야합니다.
 
 
-~~~
+{% highlight swift %}
+
 func swapAB( a: inout Int, b: inout Int) {
     let tmpa = a
     a = b
@@ -30,7 +32,8 @@ func swapAB( a: inout Int, b: inout Int) {
 var a = 10
 var b = 20
 print(swapAB(a:&a, b:&b))
-~~~
+
+{% endhighlight %}
 
 * inout 을 해주지 않으면 `Cannot assign to value: 'a' is a 'let' constant` 에러가 발생합니다.
 
@@ -39,7 +42,8 @@ print(swapAB(a:&a, b:&b))
 
 > Variadic Parameters, 하나도없거나, 많은 벨류들을 받을 수있다. 변화가있는 파라미터들..
 
-~~~
+{% highlight swift %}
+
 func arithemeticMean( numbers: Double...) -> Double {
     var total: Double = 0
     for number in numbers {
@@ -51,25 +55,29 @@ func arithemeticMean( numbers: Double...) -> Double {
 <br>
 
 arithemeticMean(numbers:1.1,2.4,3.5,1.2)
-~~~
+
+{% endhighlight %}
 
 > Default Parameter Value
- 
 
-~~~
+
+{% highlight swift %}
+
 func someFunction(parameter: Int, parameterWithDefault: Int=12) -> Int {
     return parameter + parameterWithDefault
 }
 print(someFunction(parameter: 10))
 print(someFunction(parameter: 10,parameterWithDefault: 20))
-~~~
+
+{% endhighlight %}
 
 <br>
 
 > Optional Tuple Return Types
 
 
-~~~
+{% highlight swift %}
+
 // array부터 최소 최대 출력 함수.
 // nil을 반환할 수 있음으로 optional하게 선언하기위해 return에 ? 가 들어감.
 func minMax(array:[Int]) -> (min:Int, max:Int)? {
@@ -96,7 +104,8 @@ if let tup = minMax(array: randomArr){
 }else {
     print("return is nil")
 }
-~~~
+
+{% endhighlight %}
 
 
 

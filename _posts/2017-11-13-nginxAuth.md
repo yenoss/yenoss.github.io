@@ -2,6 +2,7 @@
 layout: post
 title: '[nginx] HTTPAuth with Nginx'
 tags: [nginx]
+background: '/img/posts/bg_linux.jpg'
 ---
 nginx, httpAuth
 
@@ -21,12 +22,11 @@ nginx, httpAuth
 
 <br>
 ## 3. 써보자.
-
-### 1. ApacheUtils 설치
+1. ##### ApacheUtils 설치
 - `sudo apt-get install apache2-utils`
     + apache의 utils를 이용하여 해당 기능을 쉽게 구현할 수있다.
 
-### 2. id/pw 만들기
+2. #####  id/pw 만들기
 - `sudo htpasswd -c /etc/nginx/.htpasswd {userId}`
     + id를 인풋으로 넣으면 password를 입력하라고 한다. 
 
@@ -34,10 +34,11 @@ nginx, httpAuth
 	 + 해당 id&pw가 나오는 것을 확인할 수 있다.
 
     
-### 3. nginx 설정
+3. #####  nginx 설정
 - nginx config에 아래와 같이 `auth_basic`, `auth_basic_user_file`를 입력해준다.
 
-```
+{% highlight swift %}
+
  server {
   listen       80;
   server_name  {domain};
@@ -48,9 +49,10 @@ nginx, httpAuth
       auth_basic_user_file /etc/nginx/.htpasswd; //위치 
   }
 }
-```
 
+{% endhighlight %}
 
+<br>
 ### 4. nginx 재시작
 - `sudo service nginx reload`
 	+ reload를 하면 원하는 인증 창이 나온다.
@@ -62,6 +64,7 @@ nginx, httpAuth
 
 * 어떠한 사람인지 인증하는 것은 매우 중요하다. 어떻게 사용하든 최소한의 인증을 어떻게 해야하는가는 고민은 선택이 아닌 필수이다.
 
+<br>
 ## Ref.
 
 * [nginx-auth](https://www.digitalocean.com/community/tutorials/how-to-set-up-password-authentication-with-nginx-on-ubuntu-14-04)

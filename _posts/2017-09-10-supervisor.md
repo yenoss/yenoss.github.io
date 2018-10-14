@@ -2,6 +2,7 @@
 layout: post
 title: '[ubuntu] Supervisor를 설치해보자.'
 tags: [ubuntu,python]
+background: '/img/posts/bg_linux.jpg'
 ---
 process monitoring,supervisor,forever
 
@@ -21,16 +22,20 @@ process monitoring,supervisor,forever
 
 ##### 설치
 
-```
+{% highlight swift %}
+
 apt-get install supervisor
-```
+
+{% endhighlight %}
+
 
 ##### 설정
 * supervisor 세팅을해보자.
 
 * /etc/supervisor/conf.d 안에 {service_name} 으로 파일을 만들고 아래와 같이 서비스에 대한 세팅을 한다.
 
-```
+{% highlight swift %}
+
 [program:{service_name}]
 //실행할 서비스 스크립트
 command =  /home/ubuntu/{project}/{실행할 shell script}
@@ -44,7 +49,9 @@ stdout_logfile = /home/ubuntu/{project}/{log저장할 파일이름}
 redirect_stderr = true
 //프로세스를 그룹으로 관리할지 여부. false라면 supervisor를 껐다켰을떄 
 stopasgroup=true
-```
+
+{% endhighlight %}
+
 
 
 #### 명령어
@@ -54,22 +61,29 @@ sudo supervisord
 
 * 실행
 
-```
+{% highlight swift %}
+
 sudo supervisorctl start all 혹은 start {program_name}...
-```
+
+{% endhighlight %}
+
 
 * 정지
 
-```
+{% highlight swift %}
 sudo supervisorctl stop all 혹은 start {program_name}...
-```
+{% endhighlight %}
+
 
 
 * 현재 상태
 
-```
+{% highlight swift %}
+
 sudo supervisorctl status
-```
+
+{% endhighlight %}
+
 
 
 * 자세한건? [supervisor docs](http://supervisord.org/running.html)
@@ -81,12 +95,13 @@ sudo supervisorctl status
 
 * /etc/supervisor/supervisord.conf 에 들어가서 마지막줄에  아래와 같이 세팅해준다.
 
-```
+{% highlight swift %}
 [inet_http_server]
 port=0.0.0.0:9001
 username={너의 id}
 password={너의 password}
-```
+{% endhighlight %}
+
 
 * 자, 이제 해당포트로 들어가 id/pw를 검색하면 아주 깔끔한 페이지가 나올것이다.
 

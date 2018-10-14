@@ -2,6 +2,7 @@
 layout: post
 title: '[django] command와 crontab을 함께 써보자.'
 tags: [django command, crontab]
+background: '/img/posts/bg_swift.jpg'
 ---
 django,command,crontab
 
@@ -31,16 +32,18 @@ django,command,crontab
 
 * django 프로젝트를 만들어 개인 프로젝트내에 아래와같은 트리가 만들어 질 수 있도록 한다.
 
-```
+{% highlight swift %}
+
 project
 │   manage.py    
 │
 └───{urProject}
     │─── management
-			│─── commands   
-					 {urCronProgram}.py   
+		│─── commands   
+			{urCronProgram}.py   
     
-```
+{% endhighlight %}
+
 
 <br>
 
@@ -49,14 +52,17 @@ project
 * urCronProgram.py는 아래와같이 코딩한다.
 
 
-```
+{% highlight python %}
+
 from django.core.management.base import BaseCommand, CommandError
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
     	print("프린트하는 프로그램");
 
-```
+{% endhighlight %}
+
+
 
 <br>
 * handle안에 원하는 프로그램 로직을 짜면 된다.
@@ -68,10 +74,12 @@ class Command(BaseCommand):
 * 앞서 말했듯 command는 기본 django 프로젝트 환경내에 특정코드를 실행하게해준다.  
 * 아래와 같은 명령어로 실행이 가능하다.
 
-```
+{% highlight swift %}
+
 python3 manage.py urCronProgram
 
-```
+{% endhighlight %}
+
 <br>
 
 * 만일 당신이 settings 옵션을 통해 런을 하고있다면, --settigns = {settings 위치} 옵션을 추가로 명령 해주어야한다.
@@ -93,38 +101,44 @@ python3 manage.py urCronProgram
 * 도큐먼트대로 설치해본다.
 
 * pip로 라이브러리를 설치하고
- 
-```
+
+{% highlight python %}
+
 pip install django-crontab
 
-```
+{% endhighlight %}
+
 
 * settings app을 추가해준다.
 
-```
+{% highlight python %}
+
 INSTALLED_APPS = (
     'django_crontab',
     ...
 )
-```
+{% endhighlight %}
+
 
 
 * 다음 CRONJOBS라는 corn configure을 설정해준다. 
 
-```
+{% highlight python %}
+
 CRONJOBS = [
 ('0 0 * * *','django.core.management.call_command',['urCronProgram'],{},'>> '+BASE_DIR+'/log/urCronProgram 2>&1'),
 ]
-```
+
+{% endhighlight %}
+
 
 * 파라미터를 살펴보면,
-	1. cron 시점, 언제 해당 프로그램이 run 될것인가. [여기를 보면 한눈에 알수있다.](https://crontab.guru/#*_*_*_*_*)
-	2. run될 프로그램의 위치이다. 이 라이브러리는 우리와같이 django command를 쓰지 않는 경우도 실행될 수있도록 되어있기 때문이다. 우리는 django command를 이용해서 작업했음으로 똑같이 작성해준다.
-	3. arguments 값이다. 프로그램에 필요한 값을 넣어주게되는데 우린 django command를 사용했음으로 여기에 해당 파일이름을 넣어준다. (정확히 list of positional arg라고 명시되어있다)
-	4. arguments 값이다. 3과 마찬가지지만 dic타입이다(dict of keyword arguments)
-	5. 마지막은 stdout,err의 저장위치이다. 필자는 baseDir에 log아래에 파일을 만들기로 하였다.
+  1. cron 시점, 언제 해당 프로그램이 run 될것인가. [여기를 보면 한눈에 알수있다.](https://crontab.guru/#*_*_*_*_*)
+  2. run될 프로그램의 위치이다. 이 라이브러리는 우리와같이 django command를 쓰지 않는 경우도 실행될 수있도록 되어있기 때문이다. 우리는 django command를 이용해서 작업했음으로 똑같이 작성해준다.
+  3. arguments 값이다. 프로그램에 필요한 값을 넣어주게되는데 우린 django command를 사용했음으로 여기에 해당 파일이름을 넣어준다. (정확히 list of positional arg라고 명시되어있다)
+  4. arguments 값이다. 3과 마찬가지지만 dic타입이다(dict of keyword arguments)
+  5. 마지막은 stdout,err의 저장위치이다. 필자는 baseDir에 log아래에 파일을 만들기로 하였다.
 
-	
 * 기본적인 사항이고, 추가적인 부분은 doc를 보면된다.
 
 
@@ -134,25 +148,34 @@ CRONJOBS = [
 
 * 추가
 
-```
+{% highlight python%}
+
 python manage.py crontab add
-```
+
+{% endhighlight %}
+
 
 <br>
 
 * 삭제
 
-```
+{% highlight python %}
+
 python manage.py crontab remove
-```
+
+{% endhighlight %}
+
 
 <br>
 * 제거
 
 
-```
+{% highlight python %}
+
 python manage.py crontab remove
-```
+
+{% endhighlight %}
+
 
 <br><br>
 

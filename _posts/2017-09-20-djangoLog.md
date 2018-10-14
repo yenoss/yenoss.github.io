@@ -2,6 +2,7 @@
 layout: post
 title: '[django] logging 처리'
 tags: [django,logging]
+background: '/img/posts/bg_swift.jpg'
 ---
 django,logger,logging
 
@@ -34,7 +35,7 @@ django,logger,logging
 * {project}/settings.py 를 아래와 같이 설정해본다.
 
 
-```
+{% highlight swift %}
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -67,7 +68,8 @@ LOGGING = {
     },
 }
 
-```
+{% endhighlight %}
+
 <br>
 
 * version :	현재 포맷 버전을 말한다.
@@ -85,11 +87,11 @@ LOGGING = {
 * root: 최종적으로 모든 핸들러를 관리한다. 여기서 가지는 level은 어떤 level들보다 최우선으로 적용된다. root내부에 handlers들이 다른 levels를 가진다고해도 root의 level의 위로 넘어갈수없다. (handlers안이 모두 debug 여도 root가 info면 info밖에 찍히질않는다)
 
 <br><br>
-### 4.마치며
+### 4. 마치며
 * 로그는 자알~ 찍어둬야 한다.
 * 가끔 다른 wsgi를 돌릴때 기존 로그들이 안먹는 경우가 있어서 자알~ 유심히 봐둬야 한다.
 
-
+<br>
 ### REF.
 1. [djangoLogging](https://docs.djangoproject.com/en/1.11/topics/logging/#custom-logging-configuration)
 

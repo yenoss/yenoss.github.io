@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
+gemspec
 
-gem "jekyll", "~> 3.5"
+gem "jekyll", "~> 3.6.0"
 
-gem "jekyll-default-layout", "~> 0.1"
-gem "jekyll-feed", "~> 0.9"
-gem "jekyll-optional-front-matter", "~> 0.2"
-gem "jekyll-paginate", "~> 1.1"
-gem "jekyll-redirect-from", "~> 0.12"
-gem "jekyll-relative-links", "~> 0.4"
-gem "jekyll-sitemap", "~> 1.0"
+group :jekyll_plugins do
+  gem "jekyll-feed", "~> 0.6"
+  gem "jekyll-paginate", "~> 1.1.0"
+end
 
-gem "classifier-reborn", "~> 2.1"
+require 'rbconfig'
+  if RbConfig::CONFIG['target_os'] =~ /darwin(1[0-3])/i
+    gem 'rb-fsevent', '<= 0.9.4'
+  end

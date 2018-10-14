@@ -2,6 +2,7 @@
 layout: post
 title: '[ubuntu] NOPASSWD 옵션이 안 먹힐 때'
 tags: [ubuntu]
+background: '/img/posts/bg_linux.jpg'
 ---
 ubuntu no password not working. nopassword 안먹힘.
 
@@ -13,13 +14,20 @@ ubuntu no password not working. nopassword 안먹힘.
 <br>
 ### 2. err 상황.
 *  일반적인 방법으로 
-```
+
+{% highlight swift %}
+
 sudo visudo
-```
+
+{% endhighlight %}
 에 들어가서,
-```
+
+{% highlight swift %}
+
 member1 ALL=(ALL) NOPASSWD:ALL
-```
+
+{% endhighlight  %}
+
 member1에게 권한을 주었다.
 하지만 member1은 sudo 명령을칠때마다 password를 원해다.
 
@@ -32,10 +40,13 @@ visduo에서 여러 권한 설정을 해주게되는데 개인과 그룹으로 �
 
 무슨말이냐면
 
-```
+{% highlight swift %}
+
 member1 ALL=(ALL) NOPASSWD:ALL
 group1 ALL=(ALL:ALL) ALL
-```
+
+{% endhighlight  %}
+
 
 sudo visudo에 위와 같이 세팅되어있고, member1이 group1에 포함되어있다면, 
 최종 라인인 group1에 권한이 member1에게 속하게 된다. 

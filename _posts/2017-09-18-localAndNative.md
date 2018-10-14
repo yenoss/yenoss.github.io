@@ -2,6 +2,7 @@
 layout: post
 title: '[cordova] Localstorage And Nativestorage'
 tags: [cordova]
+background: '/img/posts/bg_web.jpg'
 ---
 cordova,localstorage, nativestorage
 
@@ -50,9 +51,11 @@ cordova,localstorage, nativestorage
 <br>
 ##### 설치
 
-```
+{% highlight swift %}
+
 cordova plugin add cordova-plugin-nativestorage
-```
+
+{% endhighlight %}
 
 <br>
 ##### 설정
@@ -62,7 +65,8 @@ cordova plugin add cordova-plugin-nativestorage
 
 * 자세한 예는 도큐먼트를 참고하자.
 
-```
+{% highlight javascript %}
+
 var obj = {name: "yenos", age: 24};
 //저장하기.
 //저장 로직 후 성공,실패 콜백이 떨어진다.
@@ -83,7 +87,8 @@ NativeStorage.remove("reference", obj,function(obj){
 }, function(err){
 
 });
-```
+
+{% endhighlight %}
 
 <br>
 <br>
