@@ -66,7 +66,7 @@ nginx, httpAuth
 
 ### myservice.proto
 
-    {% highlight swift %}
+    {% highlight go %}
     
     ~/github.com/rpcRestService/message/myservice.proto
     
@@ -101,11 +101,15 @@ nginx, httpAuth
 
 ### Generate gRpcStub
 
-    protoc -I/usr/local/include -I. \
-      -I$GOPATH/src \
-      -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-      --go_out=plugins=grpc:. \
-      myservice.proto
+```shell
+{% highlight shell%}
+protoc -I/usr/local/include -I. \
+  -I$GOPATH/src \
+  -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+  --go_out=plugins=grpc:. \
+  myservice.proto
+{% endhighlight %}
+```
 
 <br>
 
