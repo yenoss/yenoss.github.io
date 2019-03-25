@@ -66,6 +66,8 @@ nginx, httpAuth
 
 ### myservice.proto
 
+    {% highlight swift %}
+    
     ~/github.com/rpcRestService/message/myservice.proto
     
     syntax = "proto3";
@@ -75,19 +77,20 @@ nginx, httpAuth
     message StringMessage {
             string value = 1;
     }
+        service MyService {
+                rpc Echo(StringMessage) returns (StringMessage) {
+                        option (google.api.http) = {
+                                post: "/v1/example/echo"
+                                body: "*"
+                        };
+                }
+        }
+    {% endhighlight %}
 
+  
 
-​    
-​    service MyService {
-​            rpc Echo(StringMessage) returns (StringMessage) {
-​                    option (google.api.http) = {
-​                            post: "/v1/example/echo"
-​                            body: "*"
-​                    };
-​            }
-​    }
+* StringMessage 는  struct와 같은 개념을 가지고 안에  value가 멤버면수(?)와 같은 형태로 존재하게됨.
 
-- StringMessage 는  struct와 같은 개념을 가지고 안에  value가 멤버면수(?)와 같은 형태로 존재하게됨.
 - 실제 언어별로 해당 타입들이 선언되는 모양은 [여기](https://developers.google.com/protocol-buffers/docs/proto#required_warning)를 참고.
 - 멤버변수에 정의된 고유 숫자가 보임.
     - 고유한 넘버를 하나씩 부여해주면됨.
@@ -98,16 +101,20 @@ nginx, httpAuth
 
 ### Generate gRpcStub
 
+    {% highlight swift %}
     protoc -I/usr/local/include -I. \
       -I$GOPATH/src \
       -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
       --go_out=plugins=grpc:. \
       myservice.proto
+    {% endhighlight %}
 
 <br>
 
 ### gServer.go
 
+    {% highlight swift %}
+    
     github.com/rpcRestService/server/gServer.go
     
     package main
@@ -137,6 +144,7 @@ nginx, httpAuth
             pb.RegisterMyServiceServer(s, &server{})
             s.Serve(lis)
     }	
+    {% endhighlight %}
 
 - RegisterMyServiceserver()
     - 실제 이 함수를 myservice.pb.go 에서 찾아보면  두번째 인자가 Echo함수를 가지는 Interface라는 타입이라는 것을 알 수 있다.
@@ -153,11 +161,14 @@ nginx, httpAuth
 
 ### myservice.pb.gw.go
 
+    {% highlight swift %}
     protoc -I/usr/local/include -I. \
       -I$GOPATH/src \
       -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
       --grpc-gateway_out=logtostderr=true:. \
       myservice.proto
+      
+    {% endhighlight %}
 
 - github.com/rpcRestService/message/myservice.pb.gw.go  파일이 생겼음.
 - 내부 코드 및 함수를 이용하여  grpc서버에 넘겨주는 역할을 하게됨.
@@ -166,6 +177,7 @@ nginx, httpAuth
 
 ### main.go
 
+    {% highlight swift %}
     github.com/rpcRestService/server/main.go
     
     package main
@@ -201,6 +213,7 @@ nginx, httpAuth
                     glog.Fatal(err)
             }
     }
+    {% endhighlight %}
 
 - RegisterMyServiceHandlerFromEndpoint
     - 위와 마찬가지로 myservice.pb.gw.go 에 선언되어있고 유사한 역할을 한다.
