@@ -46,9 +46,11 @@ nginx, httpAuth
 
 ## 0. Installation
 
+    {% highlight swift %}
     go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
     go get -u github.com/golang/protobuf/protoc-gen-go
     (optional) go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+    {% endhighlight %}
 
 - directory
     - [github.com/rpcRestService/message](http://github.com/rpcRestService/message)
