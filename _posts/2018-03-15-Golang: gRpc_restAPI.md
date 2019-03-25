@@ -1,7 +1,7 @@
 ---
 layout: post
-title: '[nginx] HTTPAuth with Nginx'
-tags: [nginx]
+title: '[gRPC] golang:gRpc + protobuf + RestAPI'
+tags: [grpc,rpc,protobuf,RestAPI]
 background: '/img/posts/bg_linux.jpg'
 ---
 nginx, httpAuth
