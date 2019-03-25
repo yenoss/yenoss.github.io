@@ -4,7 +4,7 @@ title: '[gRPC] golang:gRpc + protobuf + RestAPI'
 tags: [grpc,rpc,protobuf,RestAPI]
 background: '/img/posts/bg_linux.jpg'
 ---
-nginx, httpAuth
+grpc,rpc,protobuf,RestAPI
 
 <br>
 
