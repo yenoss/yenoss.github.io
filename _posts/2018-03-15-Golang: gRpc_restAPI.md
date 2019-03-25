@@ -46,10 +46,12 @@ nginx, httpAuth
 
 ## 0. Installation
 
-    {% highlight swift %}
+    {% highlight go %}
+    
     go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
     go get -u github.com/golang/protobuf/protoc-gen-go
     (optional) go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+    
     {% endhighlight %}
 
 - directory
@@ -102,12 +104,14 @@ nginx, httpAuth
 ### Generate gRpcStub
 
 ```shell
-{% highlight shell%}
+{% highlight shell %}
+
 protoc -I/usr/local/include -I. \
   -I$GOPATH/src \
   -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
   --go_out=plugins=grpc:. \
   myservice.proto
+  
 {% endhighlight %}
 ```
 
@@ -115,7 +119,7 @@ protoc -I/usr/local/include -I. \
 
 ### gServer.go
 
-    {% highlight swift %}
+    {% highlight go %}
     
     github.com/rpcRestService/server/gServer.go
     
@@ -146,6 +150,7 @@ protoc -I/usr/local/include -I. \
             pb.RegisterMyServiceServer(s, &server{})
             s.Serve(lis)
     }	
+    
     {% endhighlight %}
 
 - RegisterMyServiceserver()
@@ -163,7 +168,8 @@ protoc -I/usr/local/include -I. \
 
 ### myservice.pb.gw.go
 
-    {% highlight swift %}
+    {% highlight go %}
+    
     protoc -I/usr/local/include -I. \
       -I$GOPATH/src \
       -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
@@ -179,7 +185,8 @@ protoc -I/usr/local/include -I. \
 
 ### main.go
 
-    {% highlight swift %}
+    {% highlight go %}
+    
     github.com/rpcRestService/server/main.go
     
     package main
@@ -215,6 +222,7 @@ protoc -I/usr/local/include -I. \
                     glog.Fatal(err)
             }
     }
+    
     {% endhighlight %}
 
 - RegisterMyServiceHandlerFromEndpoint
