@@ -227,6 +227,8 @@ func (file *File) Write(b []byte) (n int, err error)
 {% highlight go %}
 
 func nextInt(b []byte, pos int) (value, nextPos int) {
+
+{% endhighlight %}
 ```
 
 ```go

@@ -237,9 +237,18 @@ protoc -I/usr/local/include -I. \
 
 - gServer, main  두 가지의 서버를 모두 잘 작동시키면 아래와 같은 결과를 얻게된다.
 
+    ~~~
+    {% highlight go %}
+    
+    
     curl -X POST -k localhost:8080/v1/example/echo -d '{"value":"this is vlaue"}'
-
+    
     {"value":"this is vlaue"}
+    
+    {% endhighlight %}
+    ~~~
+
+    
 
 <br>
 
