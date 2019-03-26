@@ -40,7 +40,7 @@ grpc,rpc,protobuf,RestAPI
 
 <br>
 
-![](/img/posts/hele-7ebd1358-a53c-45b2-b190-189f0e98939d.png)
+![](/img/posts/hele-7ebd1358-a53c-45b2-b190-189f0e98939d.jpeg)
 
 <br>
 
@@ -91,13 +91,13 @@ grpc,rpc,protobuf,RestAPI
 
   
 
-* StringMessage 는  struct와 같은 개념을 가지고 안에  value가 멤버면수(?)와 같은 형태로 존재하게됨.
+* StringMessage 는  struct와 같은 개념을 가지고 안에  value가 멤버면수(?)와 같은 형태로 존재하게 ehlsek.
 
 - 실제 언어별로 해당 타입들이 선언되는 모양은 [여기](https://developers.google.com/protocol-buffers/docs/proto#required_warning)를 참고.
-- 멤버변수에 정의된 고유 숫자가 보임.
-    - 고유한 넘버를 하나씩 부여해주면됨.
-    - 메시지의 바이너리 포멧의 고유값으로 사용되는데 한번 타입정해지고나서 수정하면 안됨.
-    - 1~15까지 1바이트로 인코딩 되어 사용되어짐(16~는 2바이트). 그러므로 자주 쓰는 것을 15이하로 설정되도록 설계.
+- 멤버변수에 정의된 고유 숫자가 보인다.
+    - 고유한 넘버를 하나씩 부여해주면된다.
+    - 메시지의 바이너리 포멧의 고유값으로 사용되는데 한번 타입정해지고나서 수정하면 안된다.
+    - 1~15까지 1바이트로 인코딩 되어 사용되어짐(16~는 2바이트). 그러므로 자주 쓰는 것을 15이하로 설정되도록 설계하여야 한다.
 
 <br>
 
@@ -178,8 +178,8 @@ protoc -I/usr/local/include -I. \
       
     {% endhighlight %}
 
-- github.com/rpcRestService/message/myservice.pb.gw.go  파일이 생겼음.
-- 내부 코드 및 함수를 이용하여  grpc서버에 넘겨주는 역할을 하게됨.
+- github.com/rpcRestService/message/myservice.pb.gw.go  파일이 생기게된다.
+- 내부 코드 및 함수를 이용하여  grpc서버에 넘겨주는 역할을 하게된다.
 
 <br>
 
