@@ -252,6 +252,18 @@ protoc -I/usr/local/include -I. \
 
 <br>
 
+## 4.마치며
+
+- 서버딴에 모듈들이 어떻게 통신하며 의사소통하는지 궁금했는데 하나의 방법을 찾은듯하다. 
+
+- 키워드를 얻어 공부했지만.. 실제로 얼마나 좋은(?) 편리한 것인지 알게되면 .. 추가적으로 작성해보도록 하겠다! 
+
+  
+
+<br>
+
+## 
+
 ## Ref
 
 - [https://grpc.io/blog/coreos](https://grpc.io/blog/coreos)

@@ -303,8 +303,10 @@ go,effective-go
 
 
 
+## 4.마치며
 
-## 
+- effective하게 go를 쓰는 그날까지.. 
+- 익숙해져서 잘썻으면 좋겠다. Go 짱..
 
 <br>
 
