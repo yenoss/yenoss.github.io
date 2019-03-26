@@ -91,6 +91,7 @@ grpc,rpc,protobuf,RestAPI
 
   
 
+
 * StringMessage 는  struct와 같은 개념을 가지고 안에  value가 멤버면수(?)와 같은 형태로 존재하게 ehlsek.
 
 - 실제 언어별로 해당 타입들이 선언되는 모양은 [여기](https://developers.google.com/protocol-buffers/docs/proto#required_warning)를 참고.
@@ -237,18 +238,17 @@ protoc -I/usr/local/include -I. \
 
 - gServer, main  두 가지의 서버를 모두 잘 작동시키면 아래와 같은 결과를 얻게된다.
 
-    ~~~
+
     {% highlight go %}
-    
     
     curl -X POST -k localhost:8080/v1/example/echo -d '{"value":"this is vlaue"}'
     
     {"value":"this is vlaue"}
     
     {% endhighlight %}
-    ~~~
 
-    
+
+​    
 
 <br>
 

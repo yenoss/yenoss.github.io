@@ -57,16 +57,16 @@ go,effective-go
 - 자동제공하진 않지만 적절히 사용하는것은 좋다. 그러나 이름에 get을 넣거나 하는건 너무 관용적임. 
 - Owner를 get하려면 getowner 보다 owner를 걍 사용해라.
 
-```go
-{% highlight go %}
 
-owner := obj.Owner()
-if owner != user {
-    obj.SetOwner(user)
-}
+    {% highlight go %}
+    
+    owner := obj.Owner()
+    if owner != user {
+        obj.SetOwner(user)
+    }
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
 
 
@@ -109,20 +109,20 @@ if owner != user {
 
 ### if
 
-```go
-{% highlight go %}
 
-if x >0 {
-    return y
-}
+    {% highlight go %}
+    
+    if x >0 {
+        return y
+    }
+    
+    if err := file.Chmod(0554); err != nil {
+        log.Print(err)
+        return err
+    }
+    
+    {% endhighlight %}
 
-if err := file.Chmod(0554); err != nil {
-    log.Print(err)
-    return err
-}
-
-{% endhighlight %}
-```
 
 - 에러처리는 위와 같이 필요에따라 else 없이 하는 것이 좋다.
 
@@ -130,15 +130,15 @@ if err := file.Chmod(0554); err != nil {
 
 ### Redeclaration and reassignment
 
-```go
-{% highlight go %}
+
+    {% highlight go %}
 
 
-f, err := os.Open("data")
-d, err := f.Stat()
+    f, err := os.Open("data")
+    d, err := f.Stat()
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
 - err는 위에서 사용되고 아래에 새로운 값으로 쓰인다.
 
@@ -146,25 +146,25 @@ d, err := f.Stat()
 
 ### For
 
-```go
-{% highlight go %}
 
-sum := 0
-for i := 0; i < 10; i++ {
-    sum += i
-}
+    {% highlight go %}
+    
+    sum := 0
+    for i := 0; i < 10; i++ {
+        sum += i
+    }
+    
+    for key, value := range oldMap {
+        newMap[key] = value
+    }
+    
+    a := []int{1, 2, 3}
+    for i, j := 0, len(a)-1; i < j; i, j = i+1, j-1 {
+        a[i], a[j] = a[j], a[i]
+    }
+    
+    {% endhighlight %}
 
-for key, value := range oldMap {
-    newMap[key] = value
-}
-
-a := []int{1, 2, 3}
-for i, j := 0, len(a)-1; i < j; i, j = i+1, j-1 {
-    a[i], a[j] = a[j], a[i]
-}
-
-{% endhighlight %}
-```
 
 
 
@@ -177,24 +177,24 @@ for i, j := 0, len(a)-1; i < j; i, j = i+1, j-1 {
 
 - if else 체인 느낌식으로 사용하면 된다.
 
-```
-{% highlight go %}
+
+    {% highlight go %}
 
 
-func unhex(c byte) byte {
-    switch {
-    case '0' <= c && c <= '9':
-        return c - '0'
-    case 'a' <= c && c <= 'f':
-        return c - 'a' + 10
-    case 'A' <= c && c <= 'F':
-        return c - 'A' + 10
+    func unhex(c byte) byte {
+        switch {
+        case '0' <= c && c <= '9':
+            return c - '0'
+        case 'a' <= c && c <= 'f':
+            return c - 'a' + 10
+        case 'A' <= c && c <= 'F':
+            return c - 'A' + 10
+        }
+        return 0
     }
-    return 0
-}
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
 <br><br>
 
@@ -206,13 +206,13 @@ func unhex(c byte) byte {
 
 - 함수는 많은 리턴을 가질수 있다. 
 
-```
-{% highlight go %}
 
-func (file *File) Write(b []byte) (n int, err error)
+    {% highlight go %}
+    
+    func (file *File) Write(b []byte) (n int, err error)
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
 
 
@@ -223,29 +223,29 @@ func (file *File) Write(b []byte) (n int, err error)
 - 함수의 파라미터 결과 리턴은 이름을 줄수있다.
 - 이름을 짓는법이 정해져있진않지만 짧고 분명해야 한다.
 
-```go
-{% highlight go %}
 
-func nextInt(b []byte, pos int) (value, nextPos int) {
+    {% highlight go %}
+    
+    func nextInt(b []byte, pos int) (value, nextPos int) {
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
-```go
-{% highlight go %}
 
-func ReadFull(r Reader, buf []byte) (n int, err error) {
-    for len(buf) > 0 && err == nil {
-        var nr int
-        nr, err = r.Read(buf)
-        n += nr
-        buf = buf[nr:]
+    {% highlight go %}
+    
+    func ReadFull(r Reader, buf []byte) (n int, err error) {
+        for len(buf) > 0 && err == nil {
+            var nr int
+            nr, err = r.Read(buf)
+            n += nr
+            buf = buf[nr:]
+        }
+        return
     }
-    return
-}
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
 <br>
 
@@ -254,53 +254,53 @@ func ReadFull(r Reader, buf []byte) (n int, err error) {
 - Defer는 함수의 콜에 상태를 스케쥴 한다.
 - 반환되기 직전에 실행해야되는것.
 
-```go
-{% highlight go %}
 
-// Contents returns the file's contents as a string.
-func Contents(filename string) (string, error) {
-    f, err := os.Open(filename)
-    if err != nil {
-        return "", err
-    }
-    defer f.Close()  // f.Close will run when we're finished.
-
-    var result []byte
-    buf := make([]byte, 100)
-    for {
-        n, err := f.Read(buf[0:])
-        result = append(result, buf[0:n]...) // append is discussed later.
+    {% highlight go %}
+    
+    // Contents returns the file's contents as a string.
+    func Contents(filename string) (string, error) {
+        f, err := os.Open(filename)
         if err != nil {
-            if err == io.EOF {
-                break
-            }
-            return "", err  // f will be closed if we return here.
+            return "", err
         }
+        defer f.Close()  // f.Close will run when we're finished.
+    
+        var result []byte
+        buf := make([]byte, 100)
+        for {
+            n, err := f.Read(buf[0:])
+            result = append(result, buf[0:n]...) // append is discussed later.
+            if err != nil {
+                if err == io.EOF {
+                    break
+                }
+                return "", err  // f will be closed if we return here.
+            }
+        }
+        return string(result), nil // f will be closed if we return here.
     }
-    return string(result), nil // f will be closed if we return here.
-}
+    
+    {% endhighlight %}
 
-{% endhighlight %}
-```
 
 - 리소스 반환같은곳이 중요한 쓰임새 중 하나이다.
 - LIFO와 같은 형태에서 defer가 유용하게 쓰일수 있다.
 
-```go
-{% highlight go %}
 
-func trace(s string)   { fmt.Println("entering:", s) }
-func untrace(s string) { fmt.Println("leaving:", s) }
+    {% highlight go %}
+    
+    func trace(s string)   { fmt.Println("entering:", s) }
+    func untrace(s string) { fmt.Println("leaving:", s) }
+    
+    // Use them like this:
+    func a() {
+        trace("a")
+        defer untrace("a")
+        // do something....
+    }
+    
+    {% endhighlight %}
 
-// Use them like this:
-func a() {
-    trace("a")
-    defer untrace("a")
-    // do something....
-}
-
-{% endhighlight %}
-```
 
 
 
