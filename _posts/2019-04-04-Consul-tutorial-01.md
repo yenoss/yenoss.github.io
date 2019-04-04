@@ -57,8 +57,7 @@ Consul, Discovery Server
       
     {% endhighlight %} 
 
-
-
+<br>
 ## Run the Consul Agent
 
 - consul이 설치되었으니 agent를 띄어봅시다.
@@ -68,6 +67,7 @@ Consul, Discovery Server
 - client로 작동되는 프로세스는 매우 가벼우며 service register를 하고, health check, server query전송등을 합니다.
 - 이 agent(client)들은 모든 노드에 돌아야하고 클러스터의 일부여야합니다.
 
+<br>
 ## Starting the Agent
 
     {% highlight go %}
@@ -78,6 +78,7 @@ Consul, Discovery Server
 
 - 개발모드로 agent를 실행합니다.
 
+<br>
 ## Cluster Members
 
     {% highlight go %}
@@ -99,10 +100,10 @@ Consul, Discovery Server
   - 그러므로 실제 완벽히 consistant한 데이터를 얻으려면 HTTPAPI를 사용해야 합니다. 하기와 같이.
 
     {% highlight go %}
-
+    
     curl localhost:8500/v1/catalog/nodes
     [{"Node":"Armons-MacBook-Air","Address":"127.0.0.1","TaggedAddresses":{"lan":"127.0.0.1","wan":"127.0.0.1"},"CreateIndex":4,"ModifyIndex":110}]
-
+    
 	{% endhighlight %} 
 
 
@@ -111,13 +112,14 @@ Consul, Discovery Server
 - dig(domain information Groper)를 사용하여서 쿼리를 날려봅시다.
 
     {% highlight go %}
-
-	dig @127.0.0.1 -p 8600 {node_name}
-	
+    
+    dig @127.0.0.1 -p 8600 {node_name}
+    	
     {% endhighlight %}	
 
 - 8600포트는 consul의 dns server 포트 입니다.
 
+<br>
 ## Stopping the Agent
 
 - Ctrl + C를 통해  agent를 종료합니다.
@@ -126,6 +128,7 @@ Consul, Discovery Server
 - consul은 자동적으로 failed node에게 reconnect request를 전송합니다.  물론 graceful leave client(개발자의 요청으로 삭제된, 정확하게는 unregister된것이지 않을까..) 에게는 시도하지 않습니다.
 - adding 과 stopping에 관한 이야기는 [여기](https://learn.hashicorp.com/consul/day-2-operations/advanced-operations/servers)를 더 참고하면 좋습니다.
 
+<br>
 ## Defining a Service
 
 - 서비스는 서비스 정의에 대해서, 혹은 적합한 http api에 의해  생성될 수 있습니다.
@@ -135,38 +138,40 @@ Consul, Discovery Server
    1. .d는 configuration 폴더라는 것을 의미 합니다.
 
     {% highlight go %}
-
+    
 	mkdir ./consul.d
-
+    
     {% endhighlight %}
 
 2. 80포트에서도는 web서비스를 만들어봅니다. 또한 추가적으로 tagging할 수 있습니다.
 
     {% highlight go %}
-
+    
     echo '{"service": {"name": "web", "tags": ["rails"], "port": 80}}' \
         > ./consul.d/web.json
-
+    
     {% endhighlight %}
     
 3. configuration 으로 agent를 띄어봅니다.
 
     {% highlight go %}
-
+    
     consul agent -dev -config-dir=./consul.d
-
+    
     {% endhighlight %}
     
    - synced라는 메시지를 볼수 있게된다. 이는 등록한 service가 성공적으로 등록되어 기록되고 있다는 것을 의미합니다.
 
+
+<br>
 ## Querying Services
 
 - agent에 service가 등록되면 이제 dns, http api를 이용해 다양한 정보를 알 수 있습니다.
 
     {% highlight go %}
-
+    
 	dig @127.0.0.1 -p 8600 web.service.consul
-
+    
     {% endhighlight %}
     
 - web.servicec.consul로  a레코딩에 정의된 ip주소를 리턴 받을 수 있습니다.
@@ -178,25 +183,27 @@ Consul, Discovery Server
 - **또한** 앞서 설정한 tag값을 이용하여서도 검색이 가능합니다.
 
     {% highlight go %}
-
+    
 	dig @127.0.0.1 -p 8600 rails.web.service.consul
-
+    
     {% endhighlight %}
     
 - HTTPAI를 통해서도 query를 날릴 수 있습니다.
 
 	{% highlight go %}
-
+    
     $ curl http://localhost:8500/v1/catalog/service/web
     $ curl 'http://localhost:8500/v1/health/service/web?passing'
-
+    
     {% endhighlight %}
-  
+
+<br>
 ## Connect
 
 - consul은 TLS기반의 자동 connect를 제공합니다.
 - Application은 수정될 필요가없습니다. Sidecar proxies를사용하면 connect를 의식하지말고  자동 TLS 연결을 할 수 있습니다.
 
+<br>
 ## Starting a Connect-unaware Service
 
 - connect를 서비스가 인지하지 못하도록 띄어봅니다.
@@ -204,27 +211,28 @@ Consul, Discovery Server
 - echo 해주는 socket프로그램을 띄어봅니다.
 
     {% highlight go %}
-
+    
 	socat -v tcp-l:8181,fork exec:"/bin/cat"
-
+    
     {% endhighlight %}
     
 - nc 명령어를 통해 connection 할 수 있습니다.
 
     {% highlight go %}
-
+    
     nc 127.0.0.1 8181
     hello
     hello
     
     {% endhighlight %}    
 
+<br>
 ## Registering the Service with Consul and Connect
 
 - 새로운 서비스를 등록해봅니다.
 
     {% highlight go %}
-
+    
     cat <<EOF | sudo tee ./consul.d/socat.json
     {
     "service": {
@@ -242,42 +250,44 @@ Consul, Discovery Server
 - connect를 통해 실제 특정 포트에서 연결된 inout bound를 넘겨주게됩니다.
 
     {% highlight go %}
-
+    
 	consul connect proxy -sidecar-for socat
-	
+    	
     {% endhighlight %}	
 
 - 실제 코드를 실행해보면  8181포트에 한해서 proxy 프로세스가 실행됨을 확인할 수 있습니다.
 
   - 물론 지금 8181포트로 작동되는 서비스가 없기때문에 무수한 에러를 뱉을 것입니다.
 
+<br>
 ## Connecting to the Service
 
 - 실제 서비스에 연결해봅시다.
 
     {% highlight go %}
-
+    
     consul connect proxy -service web2 -upstream socat:9191
     
     {% endhighlight %}    
 
+<br>
 ## Summary
 
 - 위에 수행한 connect관련 명령어들이 실행되어 있어야합니다.
 
 	{% highlight go %}
-
+    
     socat -v tcp-l:8181,fork exec:"/bin/cat"
     sudo consul agent -dev -config-dir=consul.d
     consul connect proxy -sidecar-for socat -log-level debug
     consul connect proxy -service web2 -upstream socat:9191
-  
+      
     {% endhighlight %}    
 
 - 마지막으로 nc 명령어로 9191포트로 echo  message를 보내봅니다.  실제 8181  tcp포트를 열었지만 9191로 proxy되어 데이터가 전달되는 것을 확인 할 수 있습니다.
 
     {% highlight go %}
-
+    
     nc 127.0.0.1 9191
     hello!
     hello!
@@ -296,12 +306,13 @@ Consul, Discovery Server
 
 ![](/img/posts/img-consul.png)
 
+<br>
 ## Registering a Dependent Service
 
 - consul connect proxy를 이용하여 직접 연결해주었지만  config에  depends on 시켜서 sidecar proxy service를 붙일 수 있습니다.
 
     {% highlight go %}
-
+    
     $ cat <<EOF | sudo tee ./consul.d/web.json
     {
     "service": {
@@ -328,13 +339,14 @@ Consul, Discovery Server
   - 위 명령을 하지않고 config에 web설정에 넣어두었음으로 connect proxy를 web으로 실행시켜줘야됩니다.
 
     {% highlight go %}
-
+    
 	consul connect proxy -sidecar-for web
-	
+    
     {% endhighlight %}
 
 - 최종적으로 nc 127.0.0.1:9191 로 요청하면 마찬가지로 잘 작동하는 것을 확인할 수 있습니다.
 
+<br><br>
 ## 4.마치며
 
 - discovery server라는 것을 처음 알았는데 생각해보니 어디서든 언젠가 꼭 필요한 기능이란 생각이들었다.

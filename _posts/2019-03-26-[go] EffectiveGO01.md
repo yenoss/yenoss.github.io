@@ -179,8 +179,7 @@ go,effective-go
 
 
     {% highlight go %}
-
-
+    
     func unhex(c byte) byte {
         switch {
         case '0' <= c && c <= '9':
