@@ -138,6 +138,8 @@ Consul, Discovery Server
 
 	mkdir ./consul.d
 
+    {% endhighlight %}
+
 2. 80포트에서도는 web서비스를 만들어봅니다. 또한 추가적으로 tagging할 수 있습니다.
 
     {% highlight go %}
@@ -329,11 +331,9 @@ Consul, Discovery Server
 
 	consul connect proxy -sidecar-for web
 	
-    {% endhighlight %}	
+    {% endhighlight %}
 
 - 최종적으로 nc 127.0.0.1:9191 로 요청하면 마찬가지로 잘 작동하는 것을 확인할 수 있습니다.
-
-## 
 
 ## 4.마치며
 
