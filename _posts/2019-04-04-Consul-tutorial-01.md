@@ -18,7 +18,7 @@ Consul, Discovery Server
 
 ## 2. 그래서 무엇인가.
 
-> Discovery서버는 무엇이며 어떻게 작동할것인가?
+> Consul은 무엇이며 어떻게 작동하는가? 
 
 * Consul은  서비스를 구성하는데 여러 편리한 기능등을 제공해준다.
 * Consul에서 이야기하는 유용한 경우는 아래와 같다.
@@ -37,12 +37,8 @@ Consul, Discovery Server
 <br>
 
 ## 3. 써보자.
-* 결론: golang.org에서 제공해주는 effective go 를 정리해보자!
-* 아주아주 간략히만 정리한다. 요약이 목적.
 
-<br>
-
-<br>
+<br><br>
 ## Installation
 
 - 컨설을 설치합니다.
