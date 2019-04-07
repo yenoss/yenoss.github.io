@@ -18,7 +18,8 @@ Consul, Discovery Server
 ## 2. 그래서 무엇인가.
 
 > Consul Cluster는 어떻게 작동되는가? 
-* consul cluster를 구성해본다.
+* consul cluster 는  server client 구조로 여러 노드에서 consul이 하나의 시스템으로 작동하기위한 작업이다.
+* clustering이 되어있으면 각 노드에서 개별로 서비스등록등이 가능하며  어느 노드에서든지 일관된 검색 결과를 가질 수 있다.
 
 <br>
 
@@ -41,7 +42,7 @@ Consul, Discovery Server
     
     sudo apt-get install vagrant
     sudo apt-get install virtualbox
-      
+    
     {% endhighlight %} 
 
 - vagrant  환경설정 세팅을 아래  [여기](https://github.com/hashicorp/consul/blob/master/demo/vagrant-cluster/Vagrantfile) 레포에서 다운받고 실행합니다.
@@ -49,7 +50,7 @@ Consul, Discovery Server
     {% highlight go %}
     
     vagrant up
-      
+    
     {% endhighlight %} 
 
 - **맥환경의 유저는 system에서 oracle을 막을 수 있습니다.  system환경, 보완및 개인정보에 들어가 oracle을 allow해줍니다.**
@@ -69,7 +70,7 @@ Consul, Discovery Server
     {% highlight go %}
     
     consul agent -server -bootstrap-expect=1 -data-dir=/tmp/consul -node=agent-one -bind=172.20.20.10 -enable-script-checks=true -config-dir=/etc/consul.d
-      
+    
     {% endhighlight %} 
 
 - 이제 `ssh n2` 으로   n2 node에 접속할 수 있습니다.
@@ -79,7 +80,7 @@ Consul, Discovery Server
     
     consul agent -data-dir=/tmp/consul -node=agent-two \
         -bind=172.20.20.11 -enable-script-checks=true -config-dir=/etc/consul.d
-      
+    
     {% endhighlight %}         
 
 - 각각의 서버와 클라이언트가 떴습니다. 그러나 아직 그 둘은 서로의 존재를 모릅니다.
@@ -90,11 +91,11 @@ Consul, Discovery Server
 ## Join Cluster
 
 - 서버 agent에게  다른 클라이언트 agent가 조인하겠다고 명령을 둡니다.
-    
+  
     {% highlight go %}
     
     consul join 172.20.20.11
-      
+    
     {% endhighlight %} 
 
 - `consul members` 으로 각 노드에서 입력해보면 두개의 consul agent가 보일것입니다.
@@ -113,7 +114,7 @@ Consul, Discovery Server
     {% highlight go %}
     
     dig @127.0.0.1 -p 8600 agent-two.node.consul
-      
+    
     {% endhighlight %} 
 
 - 8600 포트는 consul의 dns 서버 포트입니다.

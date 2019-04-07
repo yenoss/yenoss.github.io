@@ -22,8 +22,8 @@ grpc,rpc,protobuf,RestAPI
 
 * Google에서 만든 RPC 라이브러리이다. 
 * RPC는 해석 그대로 원격에 있는 함수를 호출해주는 것을 컨셉으로 잡는다. 그렇기에 양쪽에 request, response를 다알아야함으로 인터페이스 규격과 코드를 protobuf로 만들고 만들어진 인터페이스를 통해서 실제 sever client가 통신을 한다. 
-* Rest api는 응답값이 명시적이지 않아 서로의 인터페이스 약속을 명확히애야하고 json으로 http통신을 이용하여 전달하기때문에 상대적으로 느리다. 
-* 주로 서버간 통신에서 많이 쓰이고 있다. 
+* Rest api는 응답값이 명시적이지 않아 서로의 인터페이스 약속을 명확히 해야하며 json형태로 http통신을 이용하여 전달하기때문에 상대적으로 느리다. 
+* 주로 서버내부 모듈간 통신에서 많이 쓰이는 것으로 보인다.
 
 
 
@@ -33,6 +33,8 @@ grpc,rpc,protobuf,RestAPI
 * grpc + protobuf 를 이용한 restAPI를 만들어볼거다.
 
 
+
+<br>
 
 ## Concept
 
@@ -90,6 +92,7 @@ grpc,rpc,protobuf,RestAPI
     {% endhighlight %}
 
   
+
 
 
 * StringMessage 는  struct와 같은 개념을 가지고 안에  value가 멤버면수(?)와 같은 형태로 존재하게 ehlsek.
