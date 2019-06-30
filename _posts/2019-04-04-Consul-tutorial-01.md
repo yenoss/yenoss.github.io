@@ -8,15 +8,25 @@ Consul, Discovery Server
 
 <br>
 
+##### 다음편이 준비되어 있습니다..
+
+* [consul tutorial 2](https://yenoss.github.io/2019/04/04/Consul-tutorial-02.html)
+
+* [consul tutorial 3](<https://yenoss.github.io/2019/04/04/Consul-tutorial-03.html>)
+
+
+
 ## 1. 왜.
 
 * consul 학습
+* 본 튜토리얼은 consul 공식 getstarted문서를 풀어쓰고 이해하기 쉽게 접하도록 필자의 간략한 설명이 부가되어있습니다.  [consul get started](https://learn.hashicorp.com/consul/#getting-started)와 같이 보시는 편이 이해에 더욱 도움이 됩니다.
+* 혹 내용이 어색하거나 잘이해되지 못하는 내용, 잘못된 해석등은 댓글을 통해 알려주세요. 
 
 
 
 <br>
 
-## 2. 그래서 무엇인가.
+## 2. 그래서 무엇인가. consul 이란?
 
 > Consul은 무엇이며 어떻게 작동하는가? 
 
@@ -25,6 +35,8 @@ Consul, Discovery Server
   * Service Discovery
     * 서비스를 말그대로 찾는 기능이다. 
     * http,dns를 이용하여 실제 분산되어진 인프라 환경에서 원하는 서비스에 특정 콜을 날릴수 있도록 위치를(ip) 찾아준다. 
+    * 물론 ip뿐만아니라 특정 서비스의 메타정보, 태깅정보등도 가지고있을 수 있다. 
+    * service health check를 통해 서비스의 생사(?)를 확인하게된다.
   * Service Segmentation
     * 정해진 네트워크에 의존하지 않고 안전하게 각 서비스들이 통신될 수 있다.
     * 분산인프라 환경에서 지속적 보안이 가능하다.
@@ -58,12 +70,17 @@ Consul, Discovery Server
 
 - consul이 설치되었으니 agent를 띄어봅시다.
 - dc에 최소 한대 이상의 서버가 있겠지만, 3~5개의 cluster로 작동되도록 권장합니다.
-  - sing server배포는 data loss 가 불가피하게 발생할 수 있기에..
-- 모든 agent는 client 모드로 작동됩니다.
+  - single server배포는 data loss 가 불가피하게 발생할 수 있기에..
 - client로 작동되는 프로세스는 매우 가벼우며 service register를 하고, health check, server query전송등을 합니다.
-- 이 agent(client)들은 모든 노드에 돌아야하고 클러스터의 일부여야합니다.
+- 이 agent들은 모든 노드에 돌아야하고 클러스터의 일부여야합니다.
+- consul을 정상적으로 작동 운영하기 위해선 다음과 아래와 같은 환경이 provisioning되어야 합니다.
+  - consul은 server, client 모드가 존재합니다. 
+  - server모드는 3~5개의 cluester로 구성되어야합니다. 
+  - client는 server에 join하는 형태가되며 client에 service를 register하게됩니다.
+  - registeration 된 service는 consul server를 통해 global 하게 관리가되며 consul에 join된 환경이라면 어디서든 조작 query를 날릴 수 있게됩니다.
 
 <br>
+
 ## Starting the Agent
 
     {% highlight go %}
@@ -74,12 +91,37 @@ Consul, Discovery Server
 
 - 개발모드로 agent를 실행합니다.
 
+
+    {% highlight go %}
+    
+    yenos@yenosui-MacBook-Pro-2:~$ consul agent -dev
+    ==> Starting Consul agent...
+               Version: 'v1.5.2'
+               Node ID: 'd2b31054-5645-69a3-4cf2-cda6be8f8338'
+             Node name: 'yenosui-MacBook-Pro-2.local'
+            Datacenter: 'dc1' (Segment: '<all>')
+                Server: true (Bootstrap: false)
+           Client Addr: [127.0.0.1] (HTTP: 8500, HTTPS: -1, gRPC: 8502, DNS: 8600)
+          Cluster Addr: 127.0.0.1 (LAN: 8301, WAN: 8302)
+               Encrypt: Gossip: false, TLS-Outgoing: false, TLS-Incoming: false, Auto-Encrypt-TLS: false
+    
+    {% endhighlight %} 
+
+* 실행 로그가 위와 같을 것인데 server mode로 dc1 데이터센터에 consul을 실행시킨 것입니다.
+
+
+
+
+
 <br>
 ## Cluster Members
 
     {% highlight go %}
     
     consul members
+    yenos@yenosui-MacBook-Pro-2:~$ consul members
+    Node                         Address         Status  Type    Build  Protocol  DC   Segment
+    yenosui-MacBook-Pro-2.local  127.0.0.1:8301  alive   server  1.5.2  2         dc1  <all>
     
     {% endhighlight %} 
 
@@ -90,17 +132,17 @@ Consul, Discovery Server
 
   - 추가 파라미터로 자세한 정보를 얻을 수 있습니다.
 
-- members command는 [GossipProtocol](https://www.consul.io/docs/internals/gossip.html)을 기반으로 `최종적인` consistant data 입니다.
+- members command는 [GossipProtocol](https://www.consul.io/docs/internals/gossip.html)을 기반으로 `최종적인` consistant data 입니다. (흔히 이야기하는 eventually 하게  consistant를 유지한다는 이야기)
 
   - 즉, 어느 순간 로컬 agent의 state는 다를 수 있다는 이야기입니다.
-  - 그러므로 실제 완벽히 consistant한 데이터를 얻으려면 HTTPAPI를 사용해야 합니다. 하기와 같이.
+  - 그러므로 실제 완벽히 consistant한 데이터를 얻으려면 HTTP API를 사용해야 합니다. 하기와 같이.
 
     {% highlight go %}
-    
+
     curl localhost:8500/v1/catalog/nodes
     [{"Node":"Armons-MacBook-Air","Address":"127.0.0.1","TaggedAddresses":{"lan":"127.0.0.1","wan":"127.0.0.1"},"CreateIndex":4,"ModifyIndex":110}]
-    
-	{% endhighlight %} 
+
+  {% endhighlight %} 
 
 
 - 물론 DNS Interface역시 지원하기 때문에 local node name을 가지고 dns lookup query를 날릴 수 도 있습니다.
@@ -121,7 +163,7 @@ Consul, Discovery Server
 - Ctrl + C를 통해  agent를 종료합니다.
 - 특정 node가 left하게되면 consul notify가 다른 cluster에게 알립니다.
 - 특정 member가 강제적으로  fail 되면 health는 critical로 되지만 실제 컨설 기록에서 삭제되는 않습니다.
-- consul은 자동적으로 failed node에게 reconnect request를 전송합니다.  물론 graceful leave client(개발자의 요청으로 삭제된, 정확하게는 unregister된것이지 않을까..) 에게는 시도하지 않습니다.
+- consul은 자동적으로 failed node에게 reconnect request를 전송합니다.  물론 gracefull leave client(개발자의 요청으로 삭제된, 정확하게는 unregister된것이지 않을까..) 에게는 시도하지 않습니다.
 - adding 과 stopping에 관한 이야기는 [여기](https://learn.hashicorp.com/consul/day-2-operations/advanced-operations/servers)를 더 참고하면 좋습니다.
 
 <br>
@@ -134,12 +176,12 @@ Consul, Discovery Server
    1. .d는 configuration 폴더라는 것을 의미 합니다.
 
     {% highlight go %}
-    
+   
 	mkdir ./consul.d
-    
+   
     {% endhighlight %}
 
-2. 80포트에서도는 web서비스를 만들어봅니다. 또한 추가적으로 tagging할 수 있습니다.
+2. 80포트에서도는 web서비스를 만들어봅니다. 또한 추가적으로 tag 정보를 추가 할 수 있습니다. 후에 tag를 통한 조회가 가능합니다.
 
     {% highlight go %}
     
@@ -158,8 +200,10 @@ Consul, Discovery Server
     
    - synced라는 메시지를 볼수 있게된다. 이는 등록한 service가 성공적으로 등록되어 기록되고 있다는 것을 의미합니다.
 
+* 실제 사용되는 유용하고 재미있는 service option들이 많이 이씃ㅂ니다.
 
 <br>
+
 ## Querying Services
 
 - agent에 service가 등록되면 이제 dns, http api를 이용해 다양한 정보를 알 수 있습니다.
@@ -187,17 +231,17 @@ Consul, Discovery Server
 - HTTPAI를 통해서도 query를 날릴 수 있습니다.
 
 	{% highlight go %}
-    
+  
     $ curl http://localhost:8500/v1/catalog/service/web
     $ curl 'http://localhost:8500/v1/health/service/web?passing'
-    
+  
     {% endhighlight %}
 
 <br>
 ## Connect
 
 - consul은 TLS기반의 자동 connect를 제공합니다.
-- Application은 수정될 필요가없습니다. Sidecar proxies를사용하면 connect를 의식하지말고  자동 TLS 연결을 할 수 있습니다.
+- Application은 수정될 필요가 없습니다. Sidecar proxies를 사용하면 connect를 의식하지말고  자동 TLS 연결을 할 수 있습니다.
 
 <br>
 ## Starting a Connect-unaware Service
@@ -272,7 +316,7 @@ Consul, Discovery Server
 - 위에 수행한 connect관련 명령어들이 실행되어 있어야합니다.
 
 	{% highlight go %}
-    
+  
     socat -v tcp-l:8181,fork exec:"/bin/cat"
     sudo consul agent -dev -config-dir=consul.d
     consul connect proxy -sidecar-for socat -log-level debug
@@ -297,7 +341,7 @@ Consul, Discovery Server
 - 하여 nc명령어를 날려보면 요청이가고 앞서 띄었던
   - socat -v tcp-l:8181,fork exec:"/bin/cat" 에 데이터가 프록시를 거쳐 잘 도착하게 됩니다.
 - 여기서 말하는 service 이름은 실제 등록되는 서비스가 아닙니다. 단순히 해당 프록시를 나타내는 정보일 뿐입니다.
-- connect proxy의 가장큰 강점은 긱존 8181로 띄어있는 application의 추가적인 작업을 하지 않고 프록시 할 수 있다는 점입니다.
+- connect proxy의 가장 큰 강점은 기존 8181로 띄어있는 application의 추가적인 작업을 하지 않고 프록시 할 수 있다는 점입니다.
 - 8181로 열린 application에 단순  연결받을 포트(9191)를 정해주고, proxy service를 등록하는 것으로 application 포트를 9191도 받을 수 있게끔 만들었습니다!
 
 ![](/img/posts/img-consul.png)
@@ -336,8 +380,9 @@ Consul, Discovery Server
 
     {% highlight go %}
     
-	consul connect proxy -sidecar-for web
-    
+
+  consul connect proxy -sidecar-for web
+
     {% endhighlight %}
 
 - 최종적으로 nc 127.0.0.1:9191 로 요청하면 마찬가지로 잘 작동하는 것을 확인할 수 있습니다.
@@ -345,7 +390,7 @@ Consul, Discovery Server
 <br><br>
 ## 4.마치며
 
-- discovery server라는 것을 처음 알았는데 생각해보니 어디서든 언젠가 꼭 필요한 기능이란 생각이들었다.
+- discovery server라는 것을 처음 알았는데 생각해보니 어디서든 언젠가 꼭 필요한 기능이란 생각이 들었다.
 
 - consul이 없었으면 실제 구현해야겠지.. 덜덜..
 
