@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[go] Effective GO 01편'
+title: '[go] Effective GO 한글 01편'
 tags: [go,effective-go]
 background: '/img/posts/bg_java.jpg'
 ---
@@ -10,9 +10,7 @@ go,effective-go
 
 ## 1. 왜.
 
-* effective go
-
-
+* effective go 한글 버전으로 만들기
 
 <br>
 
@@ -31,7 +29,7 @@ go,effective-go
 
 ## 3. 써보자.
 * 결론: golang.org에서 제공해주는 effective go 를 정리해보자!
-* 아주아주 간략히만 정리한다. 요약이 목적.
+* 아주 아주 간략히만 정리한다. 요약이 목적.
 
 <br>
 
