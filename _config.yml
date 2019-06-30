@@ -6,9 +6,8 @@ baseurl:           /
 url:               https://yenoss.github.io
 
 # Social Profiles
-twitter_username:  yenoss
 github_username:   yenoss
-facebook_username: yenoss
+facebook_username: pyeongkang.choi
 
 # code highlighter
 highlighter: rouge
