@@ -6,6 +6,14 @@ background: '/img/posts/bg_java.jpg'
 ---
 Consul, Discovery Server
 
+##### 다음 편이 준비되어 있습니다..
+
+- [consul tutorial 1](https://yenoss.github.io/2019/04/04/Consul-tutorial-01.html)
+
+- [consul tutorial 3](<https://yenoss.github.io/2019/04/04/Consul-tutorial-03.html>)
+
+
+
 <br>
 
 ## 1. 왜.
@@ -28,29 +36,29 @@ Consul, Discovery Server
 <br><br>
 ## Consul Cluster
 
-- agent를 만ㄷ르어보고 서비스를 등록하며 쿼리등을 agent에서 실행해봅니다.
-- 서비스간 인증과 암호화에 대해서도 알봅니다.
+- agent를 만들어보고 서비스를 등록하며 쿼리등을 agent에서 실행해봅니다.
+- 서비스간 인증과 암호화에 대해서도 알아봅니다..
 - 진짜 multiple members를 만들어보고 discovery 역할을 수행해봅시다.
 
 <br>
 ## Starting Agent
 
 - 실제 cluster를 simulating하기 위해 vagrant를 이용해 두 개이상의 노드를 구축할 수 있습니다.
-- vagrant를 구동하기 위한 provider virtaulbox도 설치해줍니다.
+- vagrant를 구동하기 위한 provider인 virtaulbox도 설치해줍니다.
 
     {% highlight go %}
-    
+
     sudo apt-get install vagrant
     sudo apt-get install virtualbox
-    
+
     {% endhighlight %} 
 
 - vagrant  환경설정 세팅을 아래  [여기](https://github.com/hashicorp/consul/blob/master/demo/vagrant-cluster/Vagrantfile) 레포에서 다운받고 실행합니다.
 
     {% highlight go %}
-    
+
     vagrant up
-    
+
     {% endhighlight %} 
 
 - **맥환경의 유저는 system에서 oracle을 막을 수 있습니다.  system환경, 보완및 개인정보에 들어가 oracle을 allow해줍니다.**
@@ -63,27 +71,30 @@ Consul, Discovery Server
 - 이제 실제로 agent를 띄어볼겁니다.
 - 그리고 첫번째 노드는  `서버` 로 사용될것입니다. 이제 실행할 agent의 플래그값중 일부를 확인해보겠습니다.
     - dev flag는 쓰지 않고, node에 이름을 명시해 줄겁니다.
-    - bind address: 모든 클러스터가 접근할수있는 address여야 합니다.  production server들은 종종multiple interfaces 를 가지게 되는데  bind address가 명확하다면 잘못될 일이 없을것입니다.
-    - bootstrap-expect : join될 agnet 들의 예상 수 입니다. consul은 지정된 수의 서버를 사용할 수 있을때까지 대기한 다음 클러스터를  bootstrap합니다. 이 과정에서 리더가 자동으로 선출됩니다.
-    - enable-script-checks: healthcheck로  bash script을 쓸수 있도로고 하는 옵션입니다.
+    - bind address
+      - 모든 클러스터가 접근할수있는 address여야 합니다.  production server들은 종종multiple interfaces 를 가지게 되는데  bind address가 명확하다면 잘못될 일이 없을것입니다.
+    - bootstrap-expect 
+      -  join될 agnet 들의 예상 수 입니다. consul은 지정된 수의 서버를 사용할 수 있을때까지 대기한 다음 클러스터를  bootstrap합니다. 이 과정에서 리더가 자동으로 선출됩니다.
+    - enable-script-checks
+      - healthcheck로  bash script을 쓸수 있도로고 하는 옵션입니다.
 
     {% highlight go %}
-    
+
     consul agent -server -bootstrap-expect=1 -data-dir=/tmp/consul -node=agent-one -bind=172.20.20.10 -enable-script-checks=true -config-dir=/etc/consul.d
-    
+
     {% endhighlight %} 
 
 - 이제 `ssh n2` 으로   n2 node에 접속할 수 있습니다.
 - 마찬가지로 client로 실행시켜줍니다.
 
     {% highlight go %}
-    
+
     consul agent -data-dir=/tmp/consul -node=agent-two \
         -bind=172.20.20.11 -enable-script-checks=true -config-dir=/etc/consul.d
-    
+
     {% endhighlight %}         
 
-- 각각의 서버와 클라이언트가 떴습니다. 그러나 아직 그 둘은 서로의 존재를 모릅니다.
+- 각각의 server와 client가 떴습니다. 그러나 아직 그 둘은 서로의 존재를 모릅니다.
 - `consul members` 으로   멤버를 찾아보면 본인밖에 나오지 않을 겁니다.
 - 이제 클러스터를 구축해야합니다.
 
@@ -117,16 +128,16 @@ Consul, Discovery Server
     
     {% endhighlight %} 
 
-- 8600 포트는 consul의 dns 서버 포트입니다.
+- 8600 포트는 consul의 dns 서버 포트입니다. consul agent가 실행될때 자동으로 dns서버가 뜨게됩니다.
 - dig를 통해 agent-two.node.consul의  실제 ip주소를 알 수 있습니다.
 - {NAME}.node.consul 혹은 {NAME}.node.{DATACENTER}.consul 의 형태로 실제 local domain을 얻어올 수 있습니다.
 
 <br><br>
 ## 4.마치며
 
-- 가장 궁금했던 cluster 이 어떻게 구축되는지 알 수 있게되었다.
-- 서버 분산환경에서 인프라 구축 혹은 서비스의 디스커버리에서의 컨설의 역할이 중요할 것이라는 생각이들었다.
-- Vagrant를 통해 서버를 구성해보니 재미가있었고 인프라, 분산서비스 구축등을 테스트해볼때 쓸모있겠다.
+- 가장 궁금했던 cluster 이 어떻게 구축되는지 알 수 있게 되었다.
+- 서버 분산환경에서 인프라 구축 혹은 service discovery 역할이 필수불가하다는 생각이 들었다.
+- Vagrant를 통해 서버를 구성해보니 재미 있었고 인프라, 분산서비스 구축등을 테스트해 볼때 쓸모있겠다.
   
 
 <br>
