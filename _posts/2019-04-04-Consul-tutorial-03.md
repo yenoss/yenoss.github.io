@@ -20,7 +20,6 @@ Consul, Discovery Server
 > Consul HealthCheck 어떻게 작동되는가? 
 * consul HelathCheck는 말그대로 consul cluster로 구성된 서비스에 HealthCheck를 의미한다.
 * 특정 노드, 서비스 등의 status를 관리하는 용도로 사용됩니다.
-* 
 
 <br>
 
@@ -32,9 +31,9 @@ Consul, Discovery Server
 
 ## Registering Health Checks
 
-- 대략 consul의 동작을 알았습니다. service, node를 붙이고 query도 날릴 수 있게되었죠.
-- 이제 우리가 붙인 서비스에 어떻게 health check를  할지에 대해 알아봅니다.
-- helath check는 무지무지 중요합니다.
+- 대략 consul의 동작을 알았습니다. service, node를 붙이고 query도 날릴 수 있게 되었죠.
+- 이제 우리가 붙인 service에 어떻게 health check를  할지에 대해 알아봅니다.
+- helath check는 무지무지 중요합니다. service의 상태는 전체 시스템에 동작하는 여부에 아주 큰 결정권을 가지고 있기 때문입니다.
 
 
 
@@ -65,7 +64,7 @@ Consul, Discovery Server
 - 첫 번쨰 check는 host-level의 check입니다.
 
   - bash 기반의  health check는 exit code에 의해 결정됩니다.
-  - exit code란 bash 명령어가 실행되고나서 리턴되는 내부적인 code값입니다. ([여기보세여](http://www.tldp.org/LDP/abs/html/exitcodes.html))
+  - exit code란 bash 명령어가 실행되고나서 리턴되는 내부적인 code값입니다. ( exit code가 궁금하시다면 [여기보세여](http://www.tldp.org/LDP/abs/html/exitcodes.html))
   - exitcode ≥ 2가 된다면 error를 1이라면 warning state를 떨궈줍니다.
 
 - 두 번째 check는 서비스에 달린 check입니다.
@@ -81,7 +80,7 @@ Consul, Discovery Server
     
     {% endhighlight %} 
 
-- 실제 n2 agent에서 web은 에러가 날겁니다. 왜나면  we 서버가 돌고있지않아서 curl test rk 실패하기 떄문이죠!
+- 실제 n2 agent에서 web은 에러가 날겁니다. 왜나면  we 서버가 돌고있지않아서 curl test 가 실패하기 떄문이죠!
 
 
 
@@ -115,7 +114,7 @@ Consul, Discovery Server
   
     {% endhighlight %} 
 
-- 위와 같이 critical한 status만 받아올 수 있습니다.
+- 위와 같이 critical한 status만 받아볼 수 있습니다.
 
 - 실제 달린 서비스의 좀더 자세한 status를 보고 싶다면..
 
@@ -163,7 +162,7 @@ Consul, Discovery Server
 ## 4.마치며
 
 - healthcheck는 discovery 서버의 가장 중요한 요소이다. 서비스의 상태 자체를 관리하기 때문이다.
-- 상태를 관리하기위한 조건이 중요할듯하다. 즉 bash 명령을 줄때 성공이 나오는 조건이 무엇이냐가 중요하다는 이야기다.
+- 상태를 관리하기 위한 조건이 중요할듯하다. 즉 bash 명령을 줄때 성공이 나오는 조건이 무엇이냐가 중요하다는 이야기다.
 - 서비스가 상태가  passing인지 critical인지 등을 시스템의 민감도를 적당히 고민하여 정하여 할 것이다. 
 
 <br>
