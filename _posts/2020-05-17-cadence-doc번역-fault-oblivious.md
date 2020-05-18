@@ -69,17 +69,11 @@ Cadence,Uber,Asynchronous,Workflow,Activity,한글,번역
 ### ID Uniquenes
 
 - `workflow ID`는 start workflow시에 client에 의해 발급됩니다. 대개 business level의 id, customer id, order id 같은 것이됩니다.
-
 - cadence 한번에 domain 한 개당 하나의 ID를 workflow에게 발급해주는 것을 보장합니다. 같은  ID로 workflow을 실행한다면 `workflow execution already sarted` error를 반환합니다.
-
-- 만약 완료된 workflow와 같은 ID를 발급받기 시도한다면, 
-
-  `workflowIdReusePolicy option`을 따릅니다. 
-
+- 만약 완료된 workflow와 같은 ID를 발급받기 시도한다면,`workflowIdReusePolicy option`을 따릅니다. 
   - `AllowDuplicateFailedOnly`:  같은 ID로 이전에 workflow가 실패한 경우에 실행가능합니다.
   - `AllowDuplicate`: 이전 workflow가 compoletion 상태면 독립적인 실행을 허용합니다.
   - `RejectDuplicate`: 같은 ID로의 실행을 전혀 허용하지 않습니다.
-
 - default는 AllowDuplicatedFailedOnly입니다.
 
 <br>
