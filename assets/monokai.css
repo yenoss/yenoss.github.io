@@ -1,6 +1,8 @@
 .highlight code, .highlight pre {
 color:#fdce93;
 background-color:#3f3f3f;
+border-radius: 15px;
+padding: 8px;
 }
 
 .highlight .hll {
