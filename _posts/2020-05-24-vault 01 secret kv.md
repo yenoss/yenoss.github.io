@@ -23,7 +23,7 @@ hashicorp,vault,key sharing,secret-engine,한글
 
 <br>
 
-<img src= "https://www.fyber.com/engineering/wp-content/uploads/2019/11/hash1.png" width="500" height="250">
+<img src= "https://www.fyber.com/engineering/wp-content/uploads/2019/11/hash1.png" width="700" height="400">
 
 <br>
 
