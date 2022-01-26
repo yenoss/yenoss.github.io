@@ -8,9 +8,13 @@ cadence, temporal Queue Worker
 
 <br><br>
 
-##Cadence,Temporal Queue, Worker
+## Cadence,Temporal Queue, Worker
 
 이글은 [Temporal의 queue worker](https://docs.temporal.io/docs/temporal-explained/task-queues-and-workers/)에 관한 docs를 번역한 글입니다.
+
+
+
+<br>
 
 ### Task
 
@@ -47,6 +51,10 @@ cadence, temporal Queue Worker
   - 실제로, taskqueue는 많은 worker process를 rebalancing을 가능하게 합니다.
   - Task Queues는 serversid throttling을 지원합니다. worker가 높은 비율로 스파크를 튀기고 있을때도 task dispatching rate pool로 제한이 가능합니다.
   - Task Queues는 Task의 구체적 task, worker로 심지어 구체적 process로 routing이 가능합니다,
+
+<br>
+
+<br>
 
 ### Worker Process
 
